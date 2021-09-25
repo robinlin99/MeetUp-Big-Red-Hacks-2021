@@ -32,6 +32,15 @@ struct DiscoverView: View {
     var activities: [Activity] {
         [testActivity1,
          testActivity2,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
+         testActivity3,
          testActivity3]
     }
     var body: some View {
@@ -69,8 +78,7 @@ struct DiscoverView: View {
                 }
                 .frame(width: geometry.size.width,
                        height: geometry.size.width * 0.20)
-                Spacer()
-                    .frame(height: geometry.size.width * 0.2)
+                SearchBar(text: .constant(""))
                 List(activities) { activity in
                     VStack(alignment: .leading) {
                         Text(activity.title)
