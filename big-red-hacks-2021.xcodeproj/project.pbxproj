@@ -11,6 +11,8 @@
 		7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6EB26FEB3EA002B33FA /* ContentView.swift */; };
 		7C97D6EE26FEB3F4002B33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */; };
 		7C97D6F126FEB3F4002B33FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C97D6F026FEB3F4002B33FA /* Preview Assets.xcassets */; };
+		7CB6038A26FF8D6100D830BE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6038926FF8D6100D830BE /* PostView.swift */; };
+		7CB6038E26FF8D9100D830BE /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6038D26FF8D9100D830BE /* DiscoverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C97D6F026FEB3F4002B33FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7C97D6F226FEB3F4002B33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CB6038926FF8D6100D830BE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		7CB6038D26FF8D9100D830BE /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,8 @@
 		7C97D6E826FEB3EA002B33FA /* big-red-hacks-2021 */ = {
 			isa = PBXGroup;
 			children = (
+				7CB6038426FF8CD200D830BE /* PostTab */,
+				7CB6038326FF8CC100D830BE /* DiscoverTab */,
 				7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */,
 				7C97D6EB26FEB3EA002B33FA /* ContentView.swift */,
 				7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */,
@@ -67,6 +73,22 @@
 				7C97D6F026FEB3F4002B33FA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7CB6038326FF8CC100D830BE /* DiscoverTab */ = {
+			isa = PBXGroup;
+			children = (
+				7CB6038D26FF8D9100D830BE /* DiscoverView.swift */,
+			);
+			path = DiscoverTab;
+			sourceTree = "<group>";
+		};
+		7CB6038426FF8CD200D830BE /* PostTab */ = {
+			isa = PBXGroup;
+			children = (
+				7CB6038926FF8D6100D830BE /* PostView.swift */,
+			);
+			path = PostTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +162,8 @@
 			files = (
 				7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */,
 				7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */,
+				7CB6038A26FF8D6100D830BE /* PostView.swift in Sources */,
+				7CB6038E26FF8D9100D830BE /* DiscoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
