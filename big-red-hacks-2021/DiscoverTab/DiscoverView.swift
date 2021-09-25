@@ -10,9 +10,9 @@ import Foundation
 
 struct Activity: Identifiable {
     let id = UUID()
-    var title: String
-    var author: String
-    var date: Date
+    public var title: String
+    public var author: String
+    public var date: Date
 }
 
 struct DiscoverView: View {
@@ -43,6 +43,7 @@ struct DiscoverView: View {
          testActivity3,
          testActivity3]
     }
+    @State var searchText: String = ""
     var body: some View {
         GeometryReader { geometry in
             VStack() {
@@ -78,8 +79,14 @@ struct DiscoverView: View {
                 }
                 .frame(width: geometry.size.width,
                        height: geometry.size.width * 0.20)
-                SearchBar(text: .constant(""))
-                List(activities) { activity in
+                Spacer()
+                    .frame(height: 0.05 * geometry.size.height)
+                SearchBar(text: $searchText)
+                List(activities.filter({
+                        searchText.isEmpty
+                            ? true
+                            : $0.title.contains(searchText)
+                })) { activity in
                     VStack(alignment: .leading) {
                         Text(activity.title)
                         Text("Poster: \(activity.author)")
