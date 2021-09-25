@@ -3,23 +3,50 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C1874B626FFB9D000083982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C1874B526FFB9D000083982 /* GoogleService-Info.plist */; };
+		7C8F019926FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */; };
+		7C8F019A26FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */; };
 		7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6EB26FEB3EA002B33FA /* ContentView.swift */; };
 		7C97D6EE26FEB3F4002B33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */; };
 		7C97D6F126FEB3F4002B33FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C97D6F026FEB3F4002B33FA /* Preview Assets.xcassets */; };
+		7CB6038A26FF8D6100D830BE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6038926FF8D6100D830BE /* PostView.swift */; };
+		7CB6038E26FF8D9100D830BE /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6038D26FF8D9100D830BE /* DiscoverView.swift */; };
+		7CB6039626FFABD000D830BE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6039526FFABCF00D830BE /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7C8F019B26FFC1A500138F6C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7C8F019A26FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0CF8472AA488C7C6C3CF57EB /* Pods-big-red-hacks-2021.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-big-red-hacks-2021.debug.xcconfig"; path = "Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021.debug.xcconfig"; sourceTree = "<group>"; };
+		3A0AB6F6708B1927AAA6BD04 /* Pods-big-red-hacks-2021.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-big-red-hacks-2021.release.xcconfig"; path = "Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021.release.xcconfig"; sourceTree = "<group>"; };
+		451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_big_red_hacks_2021.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C1874B526FFB9D000083982 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C97D6E626FEB3EA002B33FA /* big-red-hacks-2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "big-red-hacks-2021.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = big_red_hacks_2021App.swift; sourceTree = "<group>"; };
 		7C97D6EB26FEB3EA002B33FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C97D6F026FEB3F4002B33FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7C97D6F226FEB3F4002B33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CB6038926FF8D6100D830BE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		7CB6038D26FF8D9100D830BE /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		7CB6039526FFABCF00D830BE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +54,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8F019926FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		198CE32A295066431895EF45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0CF8472AA488C7C6C3CF57EB /* Pods-big-red-hacks-2021.debug.xcconfig */,
+				3A0AB6F6708B1927AAA6BD04 /* Pods-big-red-hacks-2021.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		230C5FCF46152620977B5B04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7C97D6DD26FEB3EA002B33FA = {
 			isa = PBXGroup;
 			children = (
+				7C1874B526FFB9D000083982 /* GoogleService-Info.plist */,
 				7C97D6E826FEB3EA002B33FA /* big-red-hacks-2021 */,
 				7C97D6E726FEB3EA002B33FA /* Products */,
+				198CE32A295066431895EF45 /* Pods */,
+				230C5FCF46152620977B5B04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +100,8 @@
 		7C97D6E826FEB3EA002B33FA /* big-red-hacks-2021 */ = {
 			isa = PBXGroup;
 			children = (
+				7CB6038426FF8CD200D830BE /* PostTab */,
+				7CB6038326FF8CC100D830BE /* DiscoverTab */,
 				7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */,
 				7C97D6EB26FEB3EA002B33FA /* ContentView.swift */,
 				7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */,
@@ -69,6 +119,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7CB6038326FF8CC100D830BE /* DiscoverTab */ = {
+			isa = PBXGroup;
+			children = (
+				7CB6038D26FF8D9100D830BE /* DiscoverView.swift */,
+				7CB6039526FFABCF00D830BE /* SearchBar.swift */,
+			);
+			path = DiscoverTab;
+			sourceTree = "<group>";
+		};
+		7CB6038426FF8CD200D830BE /* PostTab */ = {
+			isa = PBXGroup;
+			children = (
+				7CB6038926FF8D6100D830BE /* PostView.swift */,
+			);
+			path = PostTab;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,9 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C97D6F526FEB3F4002B33FA /* Build configuration list for PBXNativeTarget "big-red-hacks-2021" */;
 			buildPhases = (
+				B51797CBD460529917781F22 /* [CP] Check Pods Manifest.lock */,
 				7C97D6E226FEB3EA002B33FA /* Sources */,
 				7C97D6E326FEB3EA002B33FA /* Frameworks */,
 				7C97D6E426FEB3EA002B33FA /* Resources */,
+				3CB350E083E9153B3B20CD46 /* [CP] Embed Pods Frameworks */,
+				7C8F019B26FFC1A500138F6C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,10 +198,53 @@
 			files = (
 				7C97D6F126FEB3F4002B33FA /* Preview Assets.xcassets in Resources */,
 				7C97D6EE26FEB3F4002B33FA /* Assets.xcassets in Resources */,
+				7C1874B626FFB9D000083982 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3CB350E083E9153B3B20CD46 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B51797CBD460529917781F22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-big-red-hacks-2021-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C97D6E226FEB3EA002B33FA /* Sources */ = {
@@ -140,6 +253,9 @@
 			files = (
 				7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */,
 				7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */,
+				7CB6039626FFABD000D830BE /* SearchBar.swift in Sources */,
+				7CB6038A26FF8D6100D830BE /* PostView.swift in Sources */,
+				7CB6038E26FF8D9100D830BE /* DiscoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +380,7 @@
 		};
 		7C97D6F626FEB3F4002B33FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CF8472AA488C7C6C3CF57EB /* Pods-big-red-hacks-2021.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -280,12 +397,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cornell.zl755.big-red-hacks-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		7C97D6F726FEB3F4002B33FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A0AB6F6708B1927AAA6BD04 /* Pods-big-red-hacks-2021.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,7 +420,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cornell.zl755.big-red-hacks-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
