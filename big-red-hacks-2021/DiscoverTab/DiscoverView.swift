@@ -9,12 +9,14 @@ import SwiftUI
 
 struct DiscoverView: View {
     var body: some View {
-        Text("First Tab")
+        GeometryReader { geometry in
+            ProfileView()
+        }
     }
 }
 
 struct DiscoverView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoverView()
+        DiscoverView().preferredColorScheme(.dark)
     }
 }

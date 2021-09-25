@@ -12,10 +12,11 @@ struct ProfileView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack() {
-                Circle()
-                    .fill(Color.blue)
-                    .frame(width: geometry.size.width * 0.2,
-                           height: geometry.size.width * 0.2)
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: geometry.size.width * 0.15,
+                           height: geometry.size.width * 0.15)
+                    .clipShape(Circle())
                 Spacer()
                     .frame(width: geometry.size.width * 0.05)
                 VStack(alignment: .leading) {
@@ -25,16 +26,18 @@ struct ProfileView: View {
                     Button(action: {}) {
                         Text("View profile")
                         .font(.system(size: 15.0))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .fontWeight(.semibold)
                     }
                 }
             }
+            .frame(width: geometry.size.width * 0.8,
+                   height: geometry.size.height * 0.2)
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView().preferredColorScheme(.dark)
     }
 }
