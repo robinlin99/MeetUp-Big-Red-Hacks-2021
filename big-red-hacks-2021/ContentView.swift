@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            DiscoverView()
+            DiscoverView(name: "Peter Parker")
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Discover")
@@ -27,6 +27,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().preferredColorScheme(.dark)
     }
 }
