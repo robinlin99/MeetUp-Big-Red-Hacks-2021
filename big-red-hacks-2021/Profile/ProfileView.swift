@@ -17,27 +17,42 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                Text(email)
-                    .font(.largeTitle)
-                Text("User: \(id)")
-                    .font(.body)
+            GeometryReader { geometry in
+                NavigationView {
+                    VStack {
+                        HStack {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .frame(width: geometry.size.width * 0.1, height: geometry.size.width * 0.1)
+                            VStack(alignment: .leading) {
+                                Text(email)
+                                    .font(.title3)
+                                Text("User: \(id)")
+                                    .font(.body)
+                            }
+                        }
+                        List {
+                            NavigationLink("My Profile Information", destination: ProfileInfoView())
+                            NavigationLink("Meets", destination: MeetsInfoView())
+                            NavigationLink("My Posts", destination: PostsView())
+                            NavigationLink("Help & Support", destination: LegalView())
+                        }
+                        .navigationTitle("My Profile")
+                        Spacer()
+                        Button(action: { viewModel.signOut() }, label: {
+                            HStack {
+                                Image(systemName: "xmark.circle")
+                                Text("Sign Out")
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                            }
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.red)
+                            .cornerRadius(30)
+                        })
+                    }.padding()
             }
-            Spacer()
-            Button(action: { viewModel.signOut() }, label: {
-                HStack {
-                    Image(systemName: "xmark.circle")
-                        .font(.title)
-                    Text("Sign Out")
-                        .fontWeight(.semibold)
-                        .font(.headline)
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(30)
-            })
-        }.padding()
+        }
     }
 }

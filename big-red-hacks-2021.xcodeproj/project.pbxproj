@@ -14,6 +14,10 @@
 		7C10C16926FFFF6900EB4CEE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16826FFFF6900EB4CEE /* SignUpView.swift */; };
 		7C86ADA5270107E900410241 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA4270107E900410241 /* ProfileView.swift */; };
 		7C86ADA72701093700410241 /* ActivityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA62701093700410241 /* ActivityInfoView.swift */; };
+		7C86ADA92701281000410241 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA82701281000410241 /* ProfileInfoView.swift */; };
+		7C86ADAB27012C6A00410241 /* MeetsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADAA27012C6A00410241 /* MeetsInfoView.swift */; };
+		7C86ADAD27012C7B00410241 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADAC27012C7B00410241 /* PostsView.swift */; };
+		7C86ADAF27012C9200410241 /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADAE27012C9200410241 /* LegalView.swift */; };
 		7C8F019926FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */; };
 		7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */; };
 		7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6EB26FEB3EA002B33FA /* ContentView.swift */; };
@@ -35,6 +39,10 @@
 		7C10C16826FFFF6900EB4CEE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7C86ADA4270107E900410241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7C86ADA62701093700410241 /* ActivityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInfoView.swift; sourceTree = "<group>"; };
+		7C86ADA82701281000410241 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		7C86ADAA27012C6A00410241 /* MeetsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetsInfoView.swift; sourceTree = "<group>"; };
+		7C86ADAC27012C7B00410241 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
+		7C86ADAE27012C9200410241 /* LegalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalView.swift; sourceTree = "<group>"; };
 		7C97D6E626FEB3EA002B33FA /* big-red-hacks-2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "big-red-hacks-2021.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = big_red_hacks_2021App.swift; sourceTree = "<group>"; };
 		7C97D6EB26FEB3EA002B33FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				7C86ADA4270107E900410241 /* ProfileView.swift */,
+				7C86ADA82701281000410241 /* ProfileInfoView.swift */,
+				7C86ADAA27012C6A00410241 /* MeetsInfoView.swift */,
+				7C86ADAC27012C7B00410241 /* PostsView.swift */,
+				7C86ADAE27012C9200410241 /* LegalView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -293,10 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C86ADAD27012C7B00410241 /* PostsView.swift in Sources */,
+				7C86ADA92701281000410241 /* ProfileInfoView.swift in Sources */,
 				7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */,
 				7C10C16126FFEB7000EB4CEE /* SignInView.swift in Sources */,
 				7C86ADA5270107E900410241 /* ProfileView.swift in Sources */,
 				7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */,
+				7C86ADAB27012C6A00410241 /* MeetsInfoView.swift in Sources */,
+				7C86ADAF27012C9200410241 /* LegalView.swift in Sources */,
 				7CB6039626FFABD000D830BE /* SearchBarView.swift in Sources */,
 				7C10C16326FFF02700EB4CEE /* ViewModel.swift in Sources */,
 				7C86ADA72701093700410241 /* ActivityInfoView.swift in Sources */,
