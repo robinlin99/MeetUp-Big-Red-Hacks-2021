@@ -1,5 +1,5 @@
 //
-//  SearchBar.swift
+//  SearchBarView.swift
 //  big-red-hacks-2021
 //
 //  Created by Robin Lin on 2021-09-25.
@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct SearchBar: View {
+struct SearchBarView: View {
     @Binding var text: String
  
     @State private var isEditing = false
  
     var body: some View {
         HStack {
- 
             TextField("Search...", text: $text)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -31,7 +32,7 @@ struct SearchBar: View {
                             Button(action: {
                                 self.text = ""
                             }) {
-                                Image(systemName: "multiply.circle.fill")
+                                Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 8)
                             }
@@ -42,7 +43,6 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
- 
             if isEditing {
                 Button(action: {
                     self.isEditing = false
@@ -55,15 +55,15 @@ struct SearchBar: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                .animation(.easeOut(duration: 0.03))
             }
         }
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
+struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        SearchBarView(text: .constant(""))
             .preferredColorScheme(.dark)
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PostView: View {
     var body: some View {
-        Text("Second Tab")
+        Text("Post A Meetup")
+            .font(.largeTitle)
+            .fontWeight(.bold)
     }
 }
 

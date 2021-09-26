@@ -8,25 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        TabView {
-            DiscoverView(name: "Peter Parker")
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Discover")
-                }
-            PostView()
-                .tabItem {
-                    Image(systemName: "plus.circle")
-                    Text("Post")
-                }
-        }
-        .font(.headline)
+    @EnvironmentObject var viewModel: ViewModel
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(named: "backgroundColor")
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().preferredColorScheme(.dark)
+    
+    var body: some View {
+        if !viewModel.isSignedIn {
+            SignInView()
+        } else {
+            TabView {
+                DiscoverView()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Discover")
+                    }
+                PostView()
+                    .tabItem {
+                        Image(systemName: "plus.circle")
+                        Text("Post")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("My Profile")
+                    }
+            }
+            .font(.headline)
+        }
     }
 }

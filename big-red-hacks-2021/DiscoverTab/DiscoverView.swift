@@ -8,15 +8,14 @@
 import SwiftUI
 import Foundation
 
-struct Activity: Identifiable {
-    let id = UUID()
-    public var title: String
-    public var author: String
-    public var date: Date
-}
-
 struct DiscoverView: View {
-    var name: String
+    @EnvironmentObject var viewModel: ViewModel
+    var email: String {
+        viewModel.currentUser?.email ?? "none"
+    }
+    var id: String {
+        viewModel.currentUser?.uid ?? "none"
+    }
     var testActivity1: Activity =
         Activity(
             title: "🍿 Watch Spiderman Homecoming",
@@ -29,80 +28,57 @@ struct DiscoverView: View {
         Activity(
             title: "🍕 Pizza Night",
             author: "Uncle Sam", date: Date())
+    var testActivity4: Activity =
+        Activity(
+            title: "⛳️ Mini Golf",
+            author: "Tiger Woods", date: Date())
+    var testActivity5: Activity =
+        Activity(
+            title: "📚 CS 6670 Computer Vision Study Session",
+            author: "John Appleseed", date: Date())
     var activities: [Activity] {
         [testActivity1,
          testActivity2,
          testActivity3,
+         testActivity4,
+         testActivity5,
+         testActivity1,
+         testActivity2,
          testActivity3,
+         testActivity4,
+         testActivity5,
+         testActivity1,
+         testActivity2,
          testActivity3,
-         testActivity3,
-         testActivity3,
-         testActivity3,
-         testActivity3,
-         testActivity3,
-         testActivity3,
-         testActivity3]
+         testActivity4,
+         testActivity5]
     }
     @State var searchText: String = ""
+    
     var body: some View {
         GeometryReader { geometry in
-            VStack() {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color(red: 50 / 255,
-                                    green: 50 / 255,
-                                    blue: 50 / 255))
-                        .frame(width: geometry.size.width * 0.90,
-                               height: geometry.size.width * 0.20)
-                    HStack() {
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .frame(width: geometry.size.width * 0.15,
-                                   height: geometry.size.width * 0.15)
-                            .clipShape(Circle())
-                            .overlay(Circle()
-                                        .stroke(lineWidth: 1)
-                                        .foregroundColor(Color.white))
-                        Spacer()
-                            .frame(width: geometry.size.width * 0.05)
-                        VStack(alignment: .leading) {
-                            Text(name)
-                                .font(.system(size: 25.0))
-                            Button(action: {}) {
-                                Text("View Profile")
-                                    .font(.system(size: 15.0))
+            NavigationView {
+                VStack {
+                    SearchBarView(text: $searchText)
+                    List(activities.filter({
+                            searchText.isEmpty
+                                ? true
+                        : $0.title.lowercased().contains(searchText.lowercased())
+                    })) { activity in
+                        NavigationLink(destination: ActivityInfoView(
+                            title: activity.title, author: activity.author, date: activity.date)) {
+                            VStack(alignment: .leading) {
+                                Text(activity.title)
+                                Text("Poster: \(activity.author)")
+                                    .font(.subheadline)
+                                    .foregroundColor(Color.gray)
+                                Text("Date: \(activity.date)")
                             }
                         }
-                        Spacer()
-                            .frame(width: geometry.size.width * 0.3)
                     }
+                    .navigationBarTitle("Meets")
                 }
-                .frame(width: geometry.size.width,
-                       height: geometry.size.width * 0.20)
-                Spacer()
-                    .frame(height: 0.05 * geometry.size.height)
-                SearchBar(text: $searchText)
-                List(activities.filter({
-                        searchText.isEmpty
-                            ? true
-                            : $0.title.contains(searchText)
-                })) { activity in
-                    VStack(alignment: .leading) {
-                        Text(activity.title)
-                        Text("Poster: \(activity.author)")
-                            .font(.subheadline)
-                            .foregroundColor(Color.gray)
-                        Text("Date: \(activity.date)")
-                    }
-                }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+            }
         }
-    }
-}
-
-struct DiscoverView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiscoverView(name: "Peter Parker").preferredColorScheme(.dark)
     }
 }
