@@ -28,29 +28,29 @@ class ViewModel: ObservableObject {
     func signIn(email: String, password: String) {
         auth.signIn(withEmail: email,
                     password: password) { result, error in
-            guard result != nil, error == nil else {
+            if result != nil && error == nil {
+                DispatchQueue.main.async {
+                    print("Success!")
+                    self.isSignedIn = true
+                }
+            } else {
                 print("Error occured while signing in!")
                 return
             }
-        }
-        
-        DispatchQueue.main.async {
-            print("Success!")
-            self.isSignedIn = true
         }
     }
     
     func signUp(email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
-            guard result != nil, error == nil else {
+            if result != nil && error == nil {
+                DispatchQueue.main.async {
+                    print("Success!")
+                    self.isSignedIn = true
+                }
+            } else {
                 print("Error occured while signing up!")
                 return
             }
-        }
-        
-        DispatchQueue.main.async {
-            print("Success!")
-            self.isSignedIn = true
         }
     }
 }

@@ -16,10 +16,14 @@ struct SignUpView: View {
         VStack {
             VStack {
                 TextField("Email Address", text: $email)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
                 SecureField("Password", text: $password)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10)
