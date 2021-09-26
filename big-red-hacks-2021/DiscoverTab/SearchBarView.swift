@@ -1,5 +1,5 @@
 //
-//  SearchBar.swift
+//  SearchBarView.swift
 //  big-red-hacks-2021
 //
 //  Created by Robin Lin on 2021-09-25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBar: View {
+struct SearchBarView: View {
     @Binding var text: String
  
     @State private var isEditing = false
@@ -61,9 +61,9 @@ struct SearchBar: View {
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
+struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        SearchBarView(text: .constant(""))
             .preferredColorScheme(.dark)
     }
 }
