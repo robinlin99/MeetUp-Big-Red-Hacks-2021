@@ -18,12 +18,26 @@ struct ProfileView: View {
     
     var body: some View {
         VStack {
-            Text(email)
-            Text(id)
+            VStack(alignment: .leading) {
+                Text(email)
+                    .font(.largeTitle)
+                Text("User: \(id)")
+                    .font(.body)
+            }
+            Spacer()
             Button(action: { viewModel.signOut() }, label: {
-                Text("Sign Out")
-                    .foregroundColor(Color.red)
+                HStack {
+                    Image(systemName: "xmark.circle")
+                        .font(.title)
+                    Text("Sign Out")
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                }
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.red)
+                .cornerRadius(30)
             })
-        }
+        }.padding()
     }
 }

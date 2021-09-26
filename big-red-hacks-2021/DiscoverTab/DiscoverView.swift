@@ -54,7 +54,6 @@ struct DiscoverView: View {
          testActivity5]
     }
     @State var searchText: String = ""
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         GeometryReader { geometry in
