@@ -17,6 +17,7 @@ struct big_red_hacks_2021App: App {
             let viewModel: ViewModel = ViewModel()
             ContentView()
                 .environmentObject(viewModel)
+                .colorScheme(.dark)
         }
     }
 }

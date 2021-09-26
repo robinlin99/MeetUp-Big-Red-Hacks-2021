@@ -12,8 +12,9 @@
 		7C10C16126FFEB7000EB4CEE /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16026FFEB7000EB4CEE /* SignInView.swift */; };
 		7C10C16326FFF02700EB4CEE /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16226FFF02700EB4CEE /* ViewModel.swift */; };
 		7C10C16926FFFF6900EB4CEE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16826FFFF6900EB4CEE /* SignUpView.swift */; };
+		7C86ADA5270107E900410241 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA4270107E900410241 /* ProfileView.swift */; };
+		7C86ADA72701093700410241 /* ActivityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA62701093700410241 /* ActivityInfoView.swift */; };
 		7C8F019926FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */; };
-		7C8F019A26FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */; };
 		7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D6EB26FEB3EA002B33FA /* ContentView.swift */; };
 		7C97D6EE26FEB3F4002B33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C97D6ED26FEB3F4002B33FA /* Assets.xcassets */; };
@@ -22,20 +23,6 @@
 		7CB6038E26FF8D9100D830BE /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6038D26FF8D9100D830BE /* DiscoverView.swift */; };
 		7CB6039626FFABD000D830BE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6039526FFABCF00D830BE /* SearchBarView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7C8F019B26FFC1A500138F6C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7C8F019A26FFC1A500138F6C /* Pods_big_red_hacks_2021.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0CF8472AA488C7C6C3CF57EB /* Pods-big-red-hacks-2021.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-big-red-hacks-2021.debug.xcconfig"; path = "Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021.debug.xcconfig"; sourceTree = "<group>"; };
@@ -46,6 +33,8 @@
 		7C10C16026FFEB7000EB4CEE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7C10C16226FFF02700EB4CEE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C10C16826FFFF6900EB4CEE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7C86ADA4270107E900410241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7C86ADA62701093700410241 /* ActivityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInfoView.swift; sourceTree = "<group>"; };
 		7C97D6E626FEB3EA002B33FA /* big-red-hacks-2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "big-red-hacks-2021.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C97D6E926FEB3EA002B33FA /* big_red_hacks_2021App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = big_red_hacks_2021App.swift; sourceTree = "<group>"; };
 		7C97D6EB26FEB3EA002B33FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +107,14 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		7C86ADA3270107DB00410241 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7C86ADA4270107E900410241 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		7C97D6DD26FEB3EA002B33FA = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +137,7 @@
 		7C97D6E826FEB3EA002B33FA /* big-red-hacks-2021 */ = {
 			isa = PBXGroup;
 			children = (
+				7C86ADA3270107DB00410241 /* Profile */,
 				7C10C16626FFF4DB00EB4CEE /* ViewModel */,
 				7C10C16526FFF24A00EB4CEE /* Model */,
 				7C10C16426FFF23600EB4CEE /* SignIn */,
@@ -168,6 +166,7 @@
 			children = (
 				7CB6038D26FF8D9100D830BE /* DiscoverView.swift */,
 				7CB6039526FFABCF00D830BE /* SearchBarView.swift */,
+				7C86ADA62701093700410241 /* ActivityInfoView.swift */,
 			);
 			path = DiscoverTab;
 			sourceTree = "<group>";
@@ -192,7 +191,6 @@
 				7C97D6E326FEB3EA002B33FA /* Frameworks */,
 				7C97D6E426FEB3EA002B33FA /* Resources */,
 				3CB350E083E9153B3B20CD46 /* [CP] Embed Pods Frameworks */,
-				7C8F019B26FFC1A500138F6C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -297,9 +295,11 @@
 			files = (
 				7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */,
 				7C10C16126FFEB7000EB4CEE /* SignInView.swift in Sources */,
+				7C86ADA5270107E900410241 /* ProfileView.swift in Sources */,
 				7C97D6EA26FEB3EA002B33FA /* big_red_hacks_2021App.swift in Sources */,
 				7CB6039626FFABD000D830BE /* SearchBarView.swift in Sources */,
 				7C10C16326FFF02700EB4CEE /* ViewModel.swift in Sources */,
+				7C86ADA72701093700410241 /* ActivityInfoView.swift in Sources */,
 				7C10C15F26FFE72E00EB4CEE /* Model.swift in Sources */,
 				7CB6038A26FF8D6100D830BE /* PostView.swift in Sources */,
 				7C10C16926FFFF6900EB4CEE /* SignUpView.swift in Sources */,

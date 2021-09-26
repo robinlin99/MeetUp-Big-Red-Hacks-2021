@@ -31,7 +31,7 @@ struct SearchBarView: View {
                             Button(action: {
                                 self.text = ""
                             }) {
-                                Image(systemName: "multiply.circle.fill")
+                                Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 8)
                             }
@@ -55,7 +55,7 @@ struct SearchBarView: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                .animation(.easeOut(duration: 0.03))
             }
         }
     }

@@ -17,6 +17,7 @@ class ViewModel: ObservableObject {
     var currentUser: User? {
         auth.currentUser
     }
+    
     @Published var isSignedIn: Bool = false
     
     // MARK: Activities
@@ -51,6 +52,18 @@ class ViewModel: ObservableObject {
                 print("Error occured while signing up!")
                 return
             }
+        }
+    }
+    
+    func signOut() {
+        do {
+            try auth.signOut()
+            DispatchQueue.main.async {
+                self.isSignedIn = false
+            }
+        } catch {
+            print("Error occured while signing out!")
+            return
         }
     }
 }

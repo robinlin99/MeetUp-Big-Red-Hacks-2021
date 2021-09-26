@@ -10,7 +10,12 @@ import Foundation
 
 struct DiscoverView: View {
     @EnvironmentObject var viewModel: ViewModel
-    var name: String
+    var email: String {
+        viewModel.currentUser?.email ?? "none"
+    }
+    var id: String {
+        viewModel.currentUser?.uid ?? "none"
+    }
     var testActivity1: Activity =
         Activity(
             title: "🍿 Watch Spiderman Homecoming",
@@ -23,80 +28,58 @@ struct DiscoverView: View {
         Activity(
             title: "🍕 Pizza Night",
             author: "Uncle Sam", date: Date())
+    var testActivity4: Activity =
+        Activity(
+            title: "⛳️ Mini Golf",
+            author: "Tiger Woods", date: Date())
+    var testActivity5: Activity =
+        Activity(
+            title: "📚 CS 6670 Computer Vision Study Session",
+            author: "John Appleseed", date: Date())
     var activities: [Activity] {
         [testActivity1,
          testActivity2,
-         testActivity3]
+         testActivity3,
+         testActivity4,
+         testActivity5,
+         testActivity1,
+         testActivity2,
+         testActivity3,
+         testActivity4,
+         testActivity5,
+         testActivity1,
+         testActivity2,
+         testActivity3,
+         testActivity4,
+         testActivity5]
     }
     @State var searchText: String = ""
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-            GeometryReader { geometry in
-                VStack() {
-                    ZStack {
-                        if (colorScheme == .dark) {
-                            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                .fill(Color(red: 50 / 255,
-                                            green: 50 / 255,
-                                            blue: 50 / 255))
-                                .frame(width: geometry.size.width * 0.90,
-                                       height: geometry.size.width * 0.20)
-                        } else {
-                            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                .fill(Color(red: 255 / 255,
-                                            green: 255 / 255,
-                                            blue: 255 / 255))
-                                .frame(width: geometry.size.width * 0.90,
-                                       height: geometry.size.width * 0.20)
-                        }
-                        HStack() {
-                            Image(systemName: "person.fill")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.15,
-                                       height: geometry.size.width * 0.15)
-                                .clipShape(Circle())
-                                .overlay(Circle()
-                                            .stroke(lineWidth: 1)
-                                            .foregroundColor(Color.white))
-                            Spacer()
-                                .frame(width: geometry.size.width * 0.05)
-                            VStack(alignment: .leading) {
-                                Text(name)
-                                    .font(.system(size: 25.0))
-                                Button(action: { print(viewModel.isSignedIn) }, label: {
-                                    Text("View Profile")
-                                })
-                            }
-                            Spacer()
-                                .frame(width: geometry.size.width * 0.3)
-                        }
-                    }
-                    .frame(width: geometry.size.width,
-                           height: geometry.size.width * 0.20)
-                    Spacer()
-                        .frame(height: 0.05 * geometry.size.height)
+        GeometryReader { geometry in
+            NavigationView {
+                VStack {
                     SearchBarView(text: $searchText)
                     List(activities.filter({
                             searchText.isEmpty
                                 ? true
-                                : $0.title.contains(searchText)
+                        : $0.title.lowercased().contains(searchText.lowercased())
                     })) { activity in
-                        VStack(alignment: .leading) {
-                            Text(activity.title)
-                            Text("Poster: \(activity.author)")
-                                .font(.subheadline)
-                                .foregroundColor(Color.gray)
-                            Text("Date: \(activity.date)")
+                        NavigationLink(destination: ActivityInfoView(
+                            title: activity.title, author: activity.author, date: activity.date)) {
+                            VStack(alignment: .leading) {
+                                Text(activity.title)
+                                Text("Poster: \(activity.author)")
+                                    .font(.subheadline)
+                                    .foregroundColor(Color.gray)
+                                Text("Date: \(activity.date)")
+                            }
                         }
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .navigationBarTitle("Meets")
+                }
+            }
         }
-    }
-}
-
-struct DiscoverView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiscoverView(name: "Peter Parker").preferredColorScheme(.dark)
     }
 }

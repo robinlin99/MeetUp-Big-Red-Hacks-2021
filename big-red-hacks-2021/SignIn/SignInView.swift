@@ -42,7 +42,6 @@ struct SignInView: View {
                             .background(Color.blue)
                             .cornerRadius(15)
                     })
-                    
                     NavigationLink("Create an Account", destination: SignUpView())
                 }
                 .padding()

@@ -11,7 +11,6 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: ViewModel
     
     init() {
-        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundColor = UIColor(named: "backgroundColor")
     }
     
@@ -20,7 +19,7 @@ struct ContentView: View {
             SignInView()
         } else {
             TabView {
-                DiscoverView(name: "Peter Parker")
+                DiscoverView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Discover")
@@ -29,6 +28,11 @@ struct ContentView: View {
                     .tabItem {
                         Image(systemName: "plus.circle")
                         Text("Post")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("My Profile")
                     }
             }
             .font(.headline)
