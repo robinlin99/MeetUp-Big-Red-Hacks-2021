@@ -7,47 +7,68 @@
 
 import SwiftUI
 import Foundation
+import MapKit
 
 struct ActivityInfoView: View {
     var title: String
     var author: String
     var date: Date
     
+    @State var location: MKCoordinateRegion
+
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack (alignment: .leading) {
+            VStack {
+                ScrollView {
+                    VStack {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image(systemName: "person.circle")
+                                    .resizable()
+                                    .frame(width: geometry.size.width * 0.08,
+                                           height: geometry.size.width * 0.08)
+                                Text(author)
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.gray)
+                            }
+                            Spacer().frame(height: geometry.size.height * 0.01)
+                            HStack {
+                                Image(systemName: "calendar.circle")
+                                    .resizable()
+                                    .frame(width: geometry.size.width * 0.08,
+                                           height: geometry.size.width * 0.08)
+                                Text("\(date)")
+                                    .font(.body)
+                                    .foregroundColor(.gray)
+                            }
+                        }.padding()
+                        VStack (alignment: .center) {
+                            Text("Meetup Location")
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                            Map(coordinateRegion: $location,
+                                showsUserLocation: true,
+                                userTrackingMode: .constant(.follow))
+                                .frame(width: geometry.size.width * 0.90, height: geometry.size.width * 0.90)
+                                .cornerRadius(15)
+                        }.padding()
+                    }
+                }.navigationTitle(title)
+                Spacer()
+                Button(action: {}, label: {
                     HStack {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .frame(width: geometry.size.width * 0.08,
-                                   height: geometry.size.width * 0.08)
-                        Text(author)
-                            .font(.title3)
+                        Image(systemName: "square.and.pencil")
+                        Text("Register")
                             .fontWeight(.semibold)
-                            .foregroundColor(.gray)
+                            .font(.headline)
                     }
-                    Spacer().frame(height: geometry.size.height * 0.01)
-                    HStack {
-                        Image(systemName: "calendar.circle")
-                            .resizable()
-                            .frame(width: geometry.size.width * 0.08,
-                                   height: geometry.size.width * 0.08)
-                        Text("\(date)")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                    }
-                }.padding()
-            }.navigationTitle(title)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.green)
+                    .cornerRadius(20)
+                })
+            }
         }
-    }
-}
-
-struct ActivityInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityInfoView(
-            title: "🍕 Pizza Night on North Campus",
-            author: "Robin Lin",
-            date: Date()).preferredColorScheme(.dark)
     }
 }

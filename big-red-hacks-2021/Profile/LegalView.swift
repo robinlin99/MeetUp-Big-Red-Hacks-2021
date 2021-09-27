@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LegalView: View {
     var body: some View {
-        Text("Terms and Conditions")
+        ScrollView {
+            Text("Terms and Conditions")
+        }
     }
 }
 

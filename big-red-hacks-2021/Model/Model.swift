@@ -13,6 +13,7 @@ struct Activity: Identifiable {
     public var title: String
     public var author: String
     public var date: Date
+    public var meetupLocation: (Double, Double)
 }
 
 struct Profile: Identifiable {

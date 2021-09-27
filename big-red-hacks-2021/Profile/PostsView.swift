@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PostsView: View {
     var body: some View {
-        Text("My Posts")
+        ScrollView {
+            Text("My Posts")
+        }
     }
 }
 

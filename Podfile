@@ -9,5 +9,6 @@ target 'big-red-hacks-2021' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
 end

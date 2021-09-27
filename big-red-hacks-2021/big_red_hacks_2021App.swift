@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 @main
 struct big_red_hacks_2021App: App {
@@ -27,6 +28,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        print(db) // silence warning
+        
         return true
     }
 }
