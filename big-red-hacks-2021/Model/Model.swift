@@ -14,6 +14,7 @@ struct Activity: Identifiable {
     public var author: String
     public var date: Date
     public var meetupLocation: (Double, Double)
+    public var description: String
 }
 
 struct Profile: Identifiable {
@@ -24,4 +25,9 @@ struct Profile: Identifiable {
     var id: String {
         email
     }
+}
+
+struct LogInProfile: Encodable {
+    public var email: String
+    public var password: String
 }

@@ -13,8 +13,8 @@ struct ActivityInfoView: View {
     var title: String
     var author: String
     var date: Date
-    
     @State var location: MKCoordinateRegion
+    var description: String
 
     var body: some View {
         GeometryReader { geometry in
@@ -43,6 +43,14 @@ struct ActivityInfoView: View {
                                     .foregroundColor(.gray)
                             }
                         }.padding()
+                        VStack (alignment: .leading) {
+                            Text("Meetup Description")
+                                .font(.title3)
+                                .fontWeight(.heavy)
+                            Text(description)
+                                .font(.body)
+                                .fontWeight(.light)
+                        }
                         VStack (alignment: .center) {
                             Text("Meetup Location")
                                 .font(.title3)

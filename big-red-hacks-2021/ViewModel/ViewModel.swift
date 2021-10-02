@@ -8,20 +8,31 @@
 import Foundation
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class ViewModel: ObservableObject {
-    // MARK: Authentication
+    // MARK: Authentication.
     let auth = Auth.auth()
     
-    // MARK: Profile
+    // MARK: Firestore.
+    let db = Firestore.firestore()
+    
+    // MARK: Profile.
     var currentUser: User? {
         auth.currentUser
     }
     
     @Published var isSignedIn: Bool = false
     
-    // MARK: Activities
-    @Published var activities: [Activity] = [Activity]()
+    // MARK: Activities.
+    @Published var activities: [Activity] =
+        [Activity(
+            title: "🍿 Watch Spiderman Homecoming",
+            author: "Mary Jane Watson", date: Date(),
+            meetupLocation: (37.0, 122.0),
+            description: "I'm looking for people for the new Spiderman Homecoming movie. It will be fun event!"
+        )]
     var activitiesCount: Int {
         activities.count
     }
@@ -48,6 +59,19 @@ class ViewModel: ObservableObject {
                     print("Success!")
                     self.isSignedIn = true
                 }
+                // Add user login into Firestore db.
+                self.db.collection("users").document(self.currentUser!.uid).setData([
+                    "email": email,
+                    "password": password,
+                    "posts": [],
+                    "meets": []
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+                }
             } else {
                 print("Error occured while signing up!")
                 return
@@ -67,4 +91,3 @@ class ViewModel: ObservableObject {
         }
     }
 }
-
