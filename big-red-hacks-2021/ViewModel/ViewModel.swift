@@ -17,22 +17,22 @@ class ViewModel: ObservableObject {
     
     // MARK: Firestore.
     let db = Firestore.firestore()
+    var usersRef: CollectionReference {
+        db.collection("users")
+    }
+    var postsRef: CollectionReference {
+        db.collection("posts")
+    }
     
     // MARK: Profile.
     var currentUser: User? {
         auth.currentUser
     }
-    
     @Published var isSignedIn: Bool = false
     
     // MARK: Activities.
-    @Published var activities: [Activity] =
-        [Activity(
-            title: "🍿 Watch Spiderman Homecoming",
-            author: "Mary Jane Watson", date: Date(),
-            meetupLocation: (37.0, 122.0),
-            description: "I'm looking for people for the new Spiderman Homecoming movie. It will be fun event!"
-        )]
+    // Empty initialization.
+    @Published var activities: [Activity] = [Activity]()
     var activitiesCount: Int {
         activities.count
     }
@@ -52,7 +52,7 @@ class ViewModel: ObservableObject {
         }
     }
     
-    func signUp(email: String, password: String) {
+    func signUp(name: String, email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
             if result != nil && error == nil {
                 DispatchQueue.main.async {
@@ -61,6 +61,7 @@ class ViewModel: ObservableObject {
                 }
                 // Add user login into Firestore db.
                 self.db.collection("users").document(self.currentUser!.uid).setData([
+                    "name": name,
                     "email": email,
                     "password": password,
                     "posts": [],
@@ -88,6 +89,34 @@ class ViewModel: ObservableObject {
         } catch {
             print("Error occured while signing out!")
             return
+        }
+    }
+    
+    func loadActivities() {
+        postsRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.activities = []
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let title: String = document.data()["title"] as! String
+                    let author: String = document.data()["author"] as! String
+                    let date: String = document.data()["date"] as! String
+                    let location: GeoPoint = document.data()["location"] as! GeoPoint
+                    let latitude: Double = location.latitude
+                    let longitude: Double = location.longitude
+                    let description: String = document.data()["description"] as! String
+                    let activity = Activity(
+                        title: title,
+                        author: author,
+                        date: date,
+                        meetupLocation: (latitude, longitude),
+                        description: description)
+                    
+                    self.activities.append(activity)
+                }
+            }
         }
     }
 }

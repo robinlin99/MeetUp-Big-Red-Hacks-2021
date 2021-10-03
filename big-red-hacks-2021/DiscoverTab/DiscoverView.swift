@@ -36,11 +36,14 @@ struct DiscoverView: View {
                             title: activity.title,
                             author: activity.author,
                             date: activity.date,
-                            location: MKCoordinateRegion(
+                            region: MKCoordinateRegion(
                                 center: CLLocationCoordinate2D(
                                     latitude: activity.meetupLocation.0,
                                     longitude: activity.meetupLocation.1),
                                 span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0)),
+                            pin: [CLLocationCoordinate2D(
+                                latitude: activity.meetupLocation.0,
+                                longitude: activity.meetupLocation.1)],
                             description: activity.description)
                         ) {
                             VStack(alignment: .leading) {
@@ -54,7 +57,7 @@ struct DiscoverView: View {
                     }
                     .navigationBarTitle("Meets")
                 }
-            }
+            }.onAppear(perform: { viewModel.loadActivities() })
         }
     }
 }

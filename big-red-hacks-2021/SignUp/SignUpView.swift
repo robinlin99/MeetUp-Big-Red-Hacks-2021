@@ -11,11 +11,16 @@ struct SignUpView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var email = ""
     @State var password = ""
-    
+    @State var name = ""
     var body: some View {
         NavigationView {
             VStack {
                 VStack {
+                    TextField("Name", text: $name)
+                        .disableAutocorrection(true)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10)
                     TextField("Email Address", text: $email)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -30,11 +35,11 @@ struct SignUpView: View {
                         .cornerRadius(10)
                     Spacer().frame(height: 20)
                     Button(action: {
-                        guard !email.isEmpty && !password.isEmpty else {
+                        guard !email.isEmpty && !password.isEmpty && !name.isEmpty else {
                             print("Invalid Info!")
                             return
                         }
-                        viewModel.signUp(email: email, password: password)
+                        viewModel.signUp(name: name, email: email, password: password)
                     }, label: {
                         Text("Sign Up")
                             .foregroundColor(Color(.white))

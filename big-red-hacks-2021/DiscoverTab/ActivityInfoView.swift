@@ -12,15 +12,17 @@ import MapKit
 struct ActivityInfoView: View {
     var title: String
     var author: String
-    var date: Date
-    @State var location: MKCoordinateRegion
+    var date: String
+    // Regional information.
+    @State var region: MKCoordinateRegion
+    var pin: [CLLocationCoordinate2D]
     var description: String
 
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ScrollView {
-                    VStack {
+                    VStack (alignment: .leading) {
                         VStack (alignment: .leading) {
                             HStack {
                                 Image(systemName: "person.circle")
@@ -28,7 +30,6 @@ struct ActivityInfoView: View {
                                     .frame(width: geometry.size.width * 0.08,
                                            height: geometry.size.width * 0.08)
                                 Text(author)
-                                    .font(.title3)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.gray)
                             }
@@ -42,26 +43,27 @@ struct ActivityInfoView: View {
                                     .font(.body)
                                     .foregroundColor(.gray)
                             }
-                        }.padding()
+                        }.padding(.horizontal)
                         VStack (alignment: .leading) {
-                            Text("Meetup Description")
+                            Text("Meetup details")
                                 .font(.title3)
                                 .fontWeight(.heavy)
                             Text(description)
                                 .font(.body)
                                 .fontWeight(.light)
-                        }
+                        }.padding()
+                        Text("Getting there")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+                            .padding(.horizontal)
                         VStack (alignment: .center) {
-                            Text("Meetup Location")
-                                .font(.title3)
-                                .fontWeight(.heavy)
-                            Map(coordinateRegion: $location,
+                            Map(coordinateRegion: $region,
                                 showsUserLocation: true,
                                 userTrackingMode: .constant(.follow))
                                 .frame(width: geometry.size.width * 0.90, height: geometry.size.width * 0.90)
                                 .cornerRadius(15)
                         }.padding()
-                    }
+                    }.padding()
                 }.navigationTitle(title)
                 Spacer()
                 Button(action: {}, label: {
