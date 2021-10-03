@@ -55,6 +55,9 @@ struct DiscoverView: View {
                             }
                         }
                     }
+                    .refreshable {
+                        viewModel.loadActivities()
+                    }
                     .navigationBarTitle("Meets")
                 }
             }.onAppear(perform: { viewModel.loadActivities() })

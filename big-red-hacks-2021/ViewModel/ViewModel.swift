@@ -99,7 +99,6 @@ class ViewModel: ObservableObject {
             } else {
                 self.activities = []
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
                     let title: String = document.data()["title"] as! String
                     let author: String = document.data()["author"] as! String
                     let date: String = document.data()["date"] as! String

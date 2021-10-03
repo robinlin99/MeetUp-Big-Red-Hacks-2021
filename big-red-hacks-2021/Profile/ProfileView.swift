@@ -27,7 +27,7 @@ struct ProfileView: View {
                             VStack(alignment: .leading) {
                                 Text(email)
                                     .font(.title3)
-                                Text("User: \(id)")
+                                Text("\(id)")
                                     .font(.body)
                             }
                         }
