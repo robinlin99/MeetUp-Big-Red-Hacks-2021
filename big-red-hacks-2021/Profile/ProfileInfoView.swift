@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileInfoView: View {
     var body: some View {
-        Text("My Profile Info")
+        ScrollView {
+            Text("My Profile Info")
+        }
     }
 }
 

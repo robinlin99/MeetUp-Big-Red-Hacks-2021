@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import MapKit
 
 struct DiscoverView: View {
     @EnvironmentObject var viewModel: ViewModel
@@ -16,42 +17,8 @@ struct DiscoverView: View {
     var id: String {
         viewModel.currentUser?.uid ?? "none"
     }
-    var testActivity1: Activity =
-        Activity(
-            title: "🍿 Watch Spiderman Homecoming",
-            author: "Mary Jane Watson", date: Date())
-    var testActivity2: Activity =
-        Activity(
-            title: "⚽️ Outdoor Soccer on North Campus",
-            author: "Ezra Cornell", date: Date())
-    var testActivity3: Activity =
-        Activity(
-            title: "🍕 Pizza Night",
-            author: "Uncle Sam", date: Date())
-    var testActivity4: Activity =
-        Activity(
-            title: "⛳️ Mini Golf",
-            author: "Tiger Woods", date: Date())
-    var testActivity5: Activity =
-        Activity(
-            title: "📚 CS 6670 Computer Vision Study Session",
-            author: "John Appleseed", date: Date())
     var activities: [Activity] {
-        [testActivity1,
-         testActivity2,
-         testActivity3,
-         testActivity4,
-         testActivity5,
-         testActivity1,
-         testActivity2,
-         testActivity3,
-         testActivity4,
-         testActivity5,
-         testActivity1,
-         testActivity2,
-         testActivity3,
-         testActivity4,
-         testActivity5]
+        viewModel.activities
     }
     @State var searchText: String = ""
     
@@ -66,7 +33,19 @@ struct DiscoverView: View {
                         : $0.title.lowercased().contains(searchText.lowercased())
                     })) { activity in
                         NavigationLink(destination: ActivityInfoView(
-                            title: activity.title, author: activity.author, date: activity.date)) {
+                            title: activity.title,
+                            author: activity.author,
+                            date: activity.date,
+                            region: MKCoordinateRegion(
+                                center: CLLocationCoordinate2D(
+                                    latitude: activity.meetupLocation.0,
+                                    longitude: activity.meetupLocation.1),
+                                span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0)),
+                            pin: [CLLocationCoordinate2D(
+                                latitude: activity.meetupLocation.0,
+                                longitude: activity.meetupLocation.1)],
+                            description: activity.description)
+                        ) {
                             VStack(alignment: .leading) {
                                 Text(activity.title)
                                 Text("Poster: \(activity.author)")
@@ -76,9 +55,12 @@ struct DiscoverView: View {
                             }
                         }
                     }
+                    .refreshable {
+                        viewModel.loadActivities()
+                    }
                     .navigationBarTitle("Meets")
                 }
-            }
+            }.onAppear(perform: { viewModel.loadActivities() })
         }
     }
 }

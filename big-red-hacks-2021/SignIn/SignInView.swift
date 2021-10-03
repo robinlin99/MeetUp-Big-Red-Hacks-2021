@@ -40,7 +40,7 @@ struct SignInView: View {
                             .foregroundColor(Color(.white))
                             .frame(width: 200, height: 50)
                             .background(Color.blue)
-                            .cornerRadius(15)
+                            .cornerRadius(10)
                     })
                     NavigationLink("Create an Account", destination: SignUpView())
                 }

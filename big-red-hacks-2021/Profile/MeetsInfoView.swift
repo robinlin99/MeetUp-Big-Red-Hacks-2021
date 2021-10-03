@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MeetsInfoView: View {
     var body: some View {
-        Text("My Meets")
+        ScrollView {
+            Text("My Meets")
+        }
     }
 }
 
