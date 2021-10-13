@@ -9,18 +9,23 @@ import Foundation
 import FirebaseAuth
 
 struct Activity: Identifiable {
-    let id = UUID()
+    public let id = UUID()
     public var title: String
     public var author: String
     public var date: String
-    public var meetupLocation: (Double, Double)
+    public var address: String
     public var description: String
+    public var posterEmail: String
+    public var posterPhoneNumber: String
+    public var isVaccineRequired: Bool
+    public var isTestingRequired: Bool
+    public var isMaskRequired: Bool
+    public var people: Int
 }
 
 struct Profile: Identifiable {
     public var name: String
     public var email: String
-    public var phone: String
     var id: String {
         email
     }

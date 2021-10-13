@@ -16,6 +16,15 @@ struct SignInView: View {
         NavigationView {
             VStack {
                 VStack {
+                    Spacer()
+                        .frame(height: 50)
+                    Image("meetup_500x500")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
+                    Spacer()
+                        .frame(height: 50)
                     TextField("Email Address", text: $email)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -36,18 +45,18 @@ struct SignInView: View {
                         }
                         viewModel.signIn(email: email, password: password)
                     }, label: {
-                        Text("Sign In")
+                        Text("Log In")
                             .foregroundColor(Color(.white))
                             .frame(width: 200, height: 50)
                             .background(Color.blue)
                             .cornerRadius(10)
                     })
                     NavigationLink("Create an Account", destination: SignUpView())
+                    Spacer()
                 }
                 .padding()
-                Spacer()
             }
-            .navigationTitle("Sign In")
+            .navigationTitle("Log In")
         }
     }
 }

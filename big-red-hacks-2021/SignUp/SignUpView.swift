@@ -47,9 +47,9 @@ struct SignUpView: View {
                             .background(Color.blue)
                             .cornerRadius(10)
                     })
+                    Spacer()
                 }
                 .padding()
-                Spacer()
             }.navigationBarTitle("Sign Up")
         }
     }

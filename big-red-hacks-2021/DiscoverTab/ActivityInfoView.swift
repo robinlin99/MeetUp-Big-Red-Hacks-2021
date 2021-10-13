@@ -7,23 +7,50 @@
 
 import SwiftUI
 import Foundation
-import MapKit
 
 struct ActivityInfoView: View {
-    var title: String
-    var author: String
-    var date: String
-    // Regional information.
-    @State var region: MKCoordinateRegion
-    var pin: [CLLocationCoordinate2D]
-    var description: String
+    var activity: Activity
+    var title: String {
+        activity.title
+    }
+    var author: String {
+        activity.author
+    }
+    var date: String {
+        activity.date
+    }
+    var meetupAddress: String {
+        activity.address
+    }
+    var description: String {
+        activity.description
+    }
+    var posterEmail: String {
+        activity.posterEmail
+    }
+    var posterPhone: String {
+        activity.posterPhoneNumber
+    }
+    var isVaccineRequired: Bool {
+        activity.isVaccineRequired
+    }
+    var isTestingRequired: Bool {
+        activity.isTestingRequired
+    }
+    var isMaskRequired: Bool {
+        activity.isMaskRequired
+    }
+    var people: Int {
+        activity.people
+    }
 
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ScrollView {
-                    VStack (alignment: .leading) {
-                        VStack (alignment: .leading) {
+                    VStack {
+                        VStack {
+                            // Author.
                             HStack {
                                 Image(systemName: "person.circle")
                                     .resizable()
@@ -31,53 +58,78 @@ struct ActivityInfoView: View {
                                            height: geometry.size.width * 0.08)
                                 Text(author)
                                     .fontWeight(.semibold)
-                                    .foregroundColor(.gray)
-                            }
-                            Spacer().frame(height: geometry.size.height * 0.01)
+                                Spacer()
+                            }.padding(.leading)
+                            Spacer().frame(height: geometry.size.height * 0.015)
+                            // Email.
+                            HStack {
+                                Image(systemName: "envelope.open")
+                                    .resizable()
+                                    .frame(width: geometry.size.width * 0.08,
+                                           height: geometry.size.width * 0.08)
+                                Text(posterEmail)
+                                    .font(.body)
+                                Spacer()
+                            }.padding(.leading)
+                            Spacer().frame(height: geometry.size.height * 0.015)
+                            // Phone.
+                            HStack {
+                                Image(systemName: "phone")
+                                    .resizable()
+                                    .frame(width: geometry.size.width * 0.08,
+                                           height: geometry.size.width * 0.08)
+                                Text(posterPhone)
+                                    .font(.body)
+                                Spacer()
+                            }.padding(.leading)
+                            Spacer().frame(height: geometry.size.height * 0.015)
+                            // Meet Time.
                             HStack {
                                 Image(systemName: "calendar.circle")
                                     .resizable()
                                     .frame(width: geometry.size.width * 0.08,
                                            height: geometry.size.width * 0.08)
-                                Text("\(date)")
+                                Text(date)
                                     .font(.body)
-                                    .foregroundColor(.gray)
-                            }
-                        }.padding(.horizontal)
-                        VStack (alignment: .leading) {
-                            Text("Meetup details")
-                                .font(.title3)
-                                .fontWeight(.heavy)
+                                Spacer()
+                            }.padding(.leading)
+                        }.padding()
+                        // MARK: Description.
+                        VStack {
+                            HStack {
+                                Text("Meetup details")
+                                    .font(.title3)
+                                    .fontWeight(.heavy)
+                                Spacer()
+                            }.padding()
                             Text(description)
                                 .font(.body)
                                 .fontWeight(.light)
+                                .padding(.leading)
                         }.padding()
-                        Text("Getting there")
-                            .font(.title3)
-                            .fontWeight(.heavy)
-                            .padding(.horizontal)
-                        VStack (alignment: .center) {
-                            Map(coordinateRegion: $region,
-                                showsUserLocation: true,
-                                userTrackingMode: .constant(.follow))
-                                .frame(width: geometry.size.width * 0.90, height: geometry.size.width * 0.90)
-                                .cornerRadius(15)
+                        // MARK: Getting there.
+                        VStack {
+                            HStack {
+                                Text("Getting there")
+                                    .font(.title3)
+                                    .fontWeight(.heavy)
+                                Spacer()
+                            }.padding(.leading)
+                            Text(meetupAddress)
+                                .font(.subheadline)
+                                .padding()
                         }.padding()
+                        VStack {
+                            Button(action: {}, label: {
+                                Text("Register")
+                                    .font(.headline)
+                            })
+                            .foregroundColor(.white)
+                            .background(Color.green)
+                            .cornerRadius(10)
+                        }
                     }.padding()
                 }.navigationTitle(title)
-                Spacer()
-                Button(action: {}, label: {
-                    HStack {
-                        Image(systemName: "square.and.pencil")
-                        Text("Register")
-                            .fontWeight(.semibold)
-                            .font(.headline)
-                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.green)
-                    .cornerRadius(20)
-                })
             }
         }
     }
