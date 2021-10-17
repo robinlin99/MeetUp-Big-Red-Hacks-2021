@@ -11,7 +11,7 @@ struct SignInView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var email = ""
     @State var password = ""
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -22,7 +22,7 @@ struct SignInView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .cornerRadius(10)
+                        .cornerRadius(12)
                     Spacer()
                         .frame(height: 50)
                     TextField("Email Address", text: $email)
@@ -46,6 +46,7 @@ struct SignInView: View {
                         viewModel.signIn(email: email, password: password)
                     }, label: {
                         Text("Log In")
+                            .bold()
                             .foregroundColor(Color(.white))
                             .frame(width: 200, height: 50)
                             .background(Color.blue)

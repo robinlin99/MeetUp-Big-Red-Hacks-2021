@@ -10,17 +10,36 @@ import Foundation
 
 struct PostView: View {
     @EnvironmentObject var viewModel: ViewModel
+    // MARK: User Selections.
     @State var title: String = ""
     @State var description: String = ""
     @State var address: String = ""
     @State var name: String = ""
     @State var email: String = ""
     @State var phoneNumber: String = ""
-    @State var isVaccineRequired: Bool = true
-    @State var isTestingRequired: Bool = true
-    @State var isMaskRequired: Bool = true
+    @State var isVaccineRequired: Bool = false
+    @State var isTestingRequired: Bool = false
+    @State var isMaskRequired: Bool = false
     @State var people: String = ""
     @State private var date = Date()
+    
+    static func inputIsValid(title: String,
+                     description: String,
+                     address: String,
+                     name: String,
+                     email: String,
+                     phoneNumber: String,
+                     people: String,
+                     date: Date
+    ) -> Bool {
+        return !title.isEmpty &&
+               !description.isEmpty &&
+               !address.isEmpty &&
+               !name.isEmpty &&
+               !email.isEmpty &&
+               !phoneNumber.isEmpty &&
+               !people.isEmpty
+    }
 
     var body: some View {
         NavigationView {
@@ -63,6 +82,17 @@ struct PostView: View {
                     
                     Section {
                         Button(action: {
+                            guard !PostView.inputIsValid(
+                                title: title,
+                                description: description,
+                                address: address,
+                                name: name,
+                                email: email,
+                                phoneNumber: phoneNumber,
+                                people: people,
+                                date: date) else {
+                                    return
+                                }
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "MMMM dd, yyyy '@' h:mm a"
                             let activity = Activity(

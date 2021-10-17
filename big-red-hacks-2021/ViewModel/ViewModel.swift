@@ -161,7 +161,7 @@ class ViewModel: ObservableObject {
         let isMaskRequired = activity.isMaskRequired
         let people = activity.people
         
-        // Add to posts
+        // Add to posts.
         db.collection("posts").document("\(id)").setData([
             "id": id.uuidString,
             "title": title,
@@ -183,10 +183,29 @@ class ViewModel: ObservableObject {
             }
         }
         
-        // Add to user posts
+        // Add to user posts.
         db.collection("users").document(currentAuthUser!.uid).updateData([
             "posts": FieldValue.arrayUnion([id.uuidString]),
             "meets": FieldValue.arrayUnion([id.uuidString])
+        ])
+    }
+    
+    func bookActivity(activity: Activity) {
+        // Check if activity can be added.
+        usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let meets = document.data()!["meets"] as! [String]
+                let posts = document.data()!["posts"] as! [String]
+                guard !meets.contains(activity.id.uuidString) && !posts.contains(activity.id.uuidString) else {
+                    return
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+        // Add to current user activity.
+        db.collection("users").document(currentAuthUser!.uid).updateData([
+            "meets": FieldValue.arrayUnion([activity.id.uuidString])
         ])
     }
 }
