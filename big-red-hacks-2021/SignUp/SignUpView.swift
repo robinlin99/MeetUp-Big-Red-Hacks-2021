@@ -12,6 +12,11 @@ struct SignUpView: View {
     @State var email = ""
     @State var password = ""
     @State var name = ""
+    let gradient = LinearGradient(
+        gradient: Gradient(colors: [Color.red, Color.blue]),
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing)
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -43,11 +48,10 @@ struct SignUpView: View {
                     }, label: {
                         Text("Sign Up")
                             .bold()
-                            .foregroundColor(Color(.white))
-                            .frame(width: 200, height: 50)
-                            .background(Color.blue)
-                            .cornerRadius(10)
+                            .padding()
                     })
+                    .frame(width: 200, height: 50)
+                    .background(Capsule().stroke(gradient, lineWidth: 2).saturation(1.8))
                     Spacer()
                 }
                 .padding()
