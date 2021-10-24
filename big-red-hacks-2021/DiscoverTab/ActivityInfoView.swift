@@ -8,7 +8,33 @@
 import SwiftUI
 import Foundation
 
+
+struct MetaInfoView: View {
+    var text: String
+    var icon: String
+    var width: CGFloat
+    var height: CGFloat
+    
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .resizable()
+                .frame(width: width,
+                       height: height)
+                .foregroundColor(.secondary)
+            Text(text)
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .fontWeight(.semibold)
+            Spacer()
+        }
+    }
+}
+
 struct ActivityInfoView: View {
+    @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var appStateModel: AppStateModel
+    
     var activity: Activity
     var title: String {
         activity.title
@@ -49,87 +75,80 @@ struct ActivityInfoView: View {
             VStack {
                 ScrollView {
                     VStack {
-                        VStack {
-                            // Author.
+                        // MARK: Title.
+                        Group {
                             HStack {
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .frame(width: geometry.size.width * 0.08,
-                                           height: geometry.size.width * 0.08)
-                                Text(author)
-                                    .fontWeight(.semibold)
+                                Text("\(title) hosted by \(author)")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal)
                                 Spacer()
-                            }.padding(.leading)
-                            Spacer().frame(height: geometry.size.height * 0.015)
-                            // Email.
-                            HStack {
-                                Image(systemName: "envelope.open")
-                                    .resizable()
-                                    .frame(width: geometry.size.width * 0.08,
-                                           height: geometry.size.width * 0.08)
-                                Text(posterEmail)
-                                    .font(.body)
-                                Spacer()
-                            }.padding(.leading)
-                            Spacer().frame(height: geometry.size.height * 0.015)
-                            // Phone.
-                            HStack {
-                                Image(systemName: "phone")
-                                    .resizable()
-                                    .frame(width: geometry.size.width * 0.08,
-                                           height: geometry.size.width * 0.08)
-                                Text(posterPhone)
-                                    .font(.body)
-                                Spacer()
-                            }.padding(.leading)
-                            Spacer().frame(height: geometry.size.height * 0.015)
-                            // Meet Time.
-                            HStack {
-                                Image(systemName: "calendar.circle")
-                                    .resizable()
-                                    .frame(width: geometry.size.width * 0.08,
-                                           height: geometry.size.width * 0.08)
-                                Text(date)
-                                    .font(.body)
-                                Spacer()
-                            }.padding(.leading)
-                        }.padding()
+                            }.padding(.horizontal)
+                            Divider()
+                        }
+                        
+                        // MARK: Basic Information.
+                        Group {
+                            VStack {
+                                // Contact Info.
+                                MetaInfoView(text: "\(posterPhone) • \(posterEmail)", icon: "person.circle", width: geometry.size.width * 0.05, height: geometry.size.width * 0.05)
+                                    .padding(.horizontal)
+                                // Meet Time.
+                                MetaInfoView(text: date, icon: "calendar.circle", width: geometry.size.width * 0.05, height: geometry.size.width * 0.05)
+                                    .padding(.horizontal)
+                            }.padding(.horizontal)
+                            Divider()
+                        }
+                        
                         // MARK: Description.
-                        VStack {
-                            HStack {
-                                Text("Meetup details")
-                                    .font(.title3)
-                                    .fontWeight(.heavy)
-                                Spacer()
+                        Group {
+                            VStack {
+                                HStack {
+                                    Text("Meetup details")
+                                        .font(.title3)
+                                        .fontWeight(.heavy)
+                                    Spacer()
+                                }.padding(.horizontal)
+                                Text(description)
+                                    .font(.body)
+                                    .padding()
                             }.padding()
-                            Text(description)
-                                .font(.body)
-                                .fontWeight(.light)
-                                .padding(.leading)
-                        }.padding()
+                            Divider()
+                        }
+                        
                         // MARK: Getting there.
+                        Group {
+                            VStack {
+                                HStack {
+                                    Text("Getting there")
+                                        .font(.title3)
+                                        .fontWeight(.heavy)
+                                    Spacer()
+                                }.padding(.horizontal)
+                                Text(meetupAddress)
+                                    .font(.body)
+                                    .padding()
+                            }.padding()
+                            Divider()
+                        }
+                        
+                        // MARK: Book Button
                         VStack {
-                            HStack {
-                                Text("Getting there")
-                                    .font(.title3)
-                                    .fontWeight(.heavy)
-                                Spacer()
-                            }.padding(.leading)
-                            Text(meetupAddress)
-                                .font(.subheadline)
-                                .padding()
-                        }.padding()
-                        VStack {
-                            Button(action: {}, label: {
+                            Button(action: {
+                                viewModel.bookActivity(activity: activity)
+                                appStateModel.switchState(to: .discover)
+                            }, label: {
                                 Text("Register")
                                     .font(.headline)
                             })
+                            .frame(width: 200, height: 50)
                             .foregroundColor(.white)
                             .background(Color.green)
                             .cornerRadius(10)
                         }
-                    }.padding()
-                }.navigationTitle(title)
+                    }.padding(.leading)
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ import Foundation
 
 struct PostView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @EnvironmentObject var appStateModel: AppStateModel
     // MARK: User Selections.
     @State var title: String = ""
     @State var description: String = ""
@@ -39,6 +40,20 @@ struct PostView: View {
                !email.isEmpty &&
                !phoneNumber.isEmpty &&
                !people.isEmpty
+    }
+    
+    func clearData() {
+        title = ""
+        description = ""
+        address = ""
+        name = ""
+        email = ""
+        phoneNumber = ""
+        isVaccineRequired = false
+        isTestingRequired = false
+        isMaskRequired = false
+        people = ""
+        date = Date()
     }
 
     var body: some View {
@@ -82,7 +97,7 @@ struct PostView: View {
                     
                     Section {
                         Button(action: {
-                            guard !PostView.inputIsValid(
+                            guard PostView.inputIsValid(
                                 title: title,
                                 description: description,
                                 address: address,
@@ -108,6 +123,8 @@ struct PostView: View {
                                 isMaskRequired: isMaskRequired,
                                 people: Int(people) ?? 0)
                             viewModel.postActivity(activity: activity)
+                            clearData()
+                            appStateModel.switchState(to: .discover)
                         }, label: {
                             HStack {
                                 Spacer()

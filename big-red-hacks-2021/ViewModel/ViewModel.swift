@@ -11,6 +11,20 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+enum Tab {
+    case discover
+    case post
+    case profile
+}
+
+class AppStateModel: ObservableObject {
+    @Published var currentTab: Tab = .discover
+    
+    func switchState(to tab: Tab) {
+        currentTab = tab
+    }
+}
+
 class ViewModel: ObservableObject {
     // MARK: Authentication.
     let auth = Auth.auth()
@@ -160,7 +174,7 @@ class ViewModel: ObservableObject {
         let isTestingRequired = activity.isTestingRequired
         let isMaskRequired = activity.isMaskRequired
         let people = activity.people
-        
+
         // Add to posts.
         db.collection("posts").document("\(id)").setData([
             "id": id.uuidString,

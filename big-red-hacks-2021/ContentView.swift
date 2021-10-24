@@ -9,31 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: ViewModel
-    
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor(named: "backgroundColor")
-    }
-    
+    @EnvironmentObject var appStateModel: AppStateModel
+
     var body: some View {
         if !viewModel.isSignedIn {
             SignInView()
         } else {
-            TabView {
+            TabView(selection: $appStateModel.currentTab) {
                 DiscoverView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Discover")
-                    }
+                    }.tag(Tab.discover)
                 PostView()
                     .tabItem {
                         Image(systemName: "plus.circle")
                         Text("Post")
-                    }
+                    }.tag(Tab.post)
                 ProfileView()
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("My Profile")
-                    }
+                    }.tag(Tab.profile)
             }
             .font(.headline)
         }
