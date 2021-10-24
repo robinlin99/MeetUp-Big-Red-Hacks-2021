@@ -17,9 +17,11 @@ struct big_red_hacks_2021App: App {
     var body: some Scene {
         WindowGroup {
             let viewModel: ViewModel = ViewModel()
+            let appStateModel: AppStateModel = AppStateModel()
+            
             ContentView()
                 .environmentObject(viewModel)
-                .colorScheme(.dark)
+                .environmentObject(appStateModel)
         }
     }
 }

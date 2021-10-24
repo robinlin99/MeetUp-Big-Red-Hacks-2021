@@ -42,14 +42,15 @@ struct SignUpView: View {
                         viewModel.signUp(name: name, email: email, password: password)
                     }, label: {
                         Text("Sign Up")
+                            .bold()
                             .foregroundColor(Color(.white))
                             .frame(width: 200, height: 50)
                             .background(Color.blue)
                             .cornerRadius(10)
                     })
+                    Spacer()
                 }
                 .padding()
-                Spacer()
             }.navigationBarTitle("Sign Up")
         }
     }

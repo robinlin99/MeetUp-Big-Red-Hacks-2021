@@ -11,6 +11,20 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+enum Tab {
+    case discover
+    case post
+    case profile
+}
+
+class AppStateModel: ObservableObject {
+    @Published var currentTab: Tab = .discover
+    
+    func switchState(to tab: Tab) {
+        currentTab = tab
+    }
+}
+
 class ViewModel: ObservableObject {
     // MARK: Authentication.
     let auth = Auth.auth()
@@ -25,9 +39,10 @@ class ViewModel: ObservableObject {
     }
     
     // MARK: Profile.
-    var currentUser: User? {
+    var currentAuthUser: User? {
         auth.currentUser
     }
+    var currentUserProfile: Profile? = nil
     @Published var isSignedIn: Bool = false
     
     // MARK: Activities.
@@ -60,7 +75,7 @@ class ViewModel: ObservableObject {
                     self.isSignedIn = true
                 }
                 // Add user login into Firestore db.
-                self.db.collection("users").document(self.currentUser!.uid).setData([
+                self.db.collection("users").document(self.currentAuthUser!.uid).setData([
                     "name": name,
                     "email": email,
                     "password": password,
@@ -78,6 +93,8 @@ class ViewModel: ObservableObject {
                 return
             }
         }
+        //Set the current user profile.
+        currentUserProfile = Profile(name: name, email: email)
     }
     
     func signOut() {
@@ -102,20 +119,107 @@ class ViewModel: ObservableObject {
                     let title: String = document.data()["title"] as! String
                     let author: String = document.data()["author"] as! String
                     let date: String = document.data()["date"] as! String
-                    let location: GeoPoint = document.data()["location"] as! GeoPoint
-                    let latitude: Double = location.latitude
-                    let longitude: Double = location.longitude
+                    let address: String = document.data()["address"] as! String
                     let description: String = document.data()["description"] as! String
+                    let email: String = document.data()["email"] as! String
+                    let phone: String = document.data()["phone"] as! String
+                    let isVaccineRequired: Bool = document.data()["isVaccineRequired"] as! Bool
+                    let isTestingRequired: Bool = document.data()["isTestingRequired"] as! Bool
+                    let isMaskRequired: Bool = document.data()["isMaskRequired"] as! Bool
+                    let people: Int = document.data()["people"] as! Int
+                    
                     let activity = Activity(
                         title: title,
                         author: author,
                         date: date,
-                        meetupLocation: (latitude, longitude),
-                        description: description)
-                    
+                        address: address,
+                        description: description,
+                        posterEmail: email,
+                        posterPhoneNumber: phone,
+                        isVaccineRequired: isVaccineRequired,
+                        isTestingRequired: isTestingRequired,
+                        isMaskRequired: isMaskRequired,
+                        people: people)
                     self.activities.append(activity)
                 }
             }
         }
+    }
+    
+    func loadUserProfile() {
+        // Extract the name from db.
+        if currentAuthUser != nil {
+            usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let name = document.data()!["name"] as! String
+                    let email = document.data()!["email"] as! String
+                    self.currentUserProfile = Profile(name: name, email: email)
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
+    
+    func postActivity(activity: Activity) {
+        let id = activity.id
+        let title = activity.title
+        let author = activity.author
+        let date = activity.date
+        let meetupAddress = activity.address
+        let description = activity.description
+        let email = activity.posterEmail
+        let phone = activity.posterPhoneNumber
+        let isVaccineRequired = activity.isVaccineRequired
+        let isTestingRequired = activity.isTestingRequired
+        let isMaskRequired = activity.isMaskRequired
+        let people = activity.people
+
+        // Add to posts.
+        db.collection("posts").document("\(id)").setData([
+            "id": id.uuidString,
+            "title": title,
+            "author": author,
+            "date": date,
+            "address": meetupAddress,
+            "description": description,
+            "email": email,
+            "phone": phone,
+            "isVaccineRequired": isVaccineRequired,
+            "isTestingRequired": isTestingRequired,
+            "isMaskRequired": isMaskRequired,
+            "people": people
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+        // Add to user posts.
+        db.collection("users").document(currentAuthUser!.uid).updateData([
+            "posts": FieldValue.arrayUnion([id.uuidString]),
+            "meets": FieldValue.arrayUnion([id.uuidString])
+        ])
+    }
+    
+    func bookActivity(activity: Activity) {
+        // Check if activity can be added.
+        usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let meets = document.data()!["meets"] as! [String]
+                let posts = document.data()!["posts"] as! [String]
+                guard !meets.contains(activity.id.uuidString) && !posts.contains(activity.id.uuidString) else {
+                    return
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+        // Add to current user activity.
+        db.collection("users").document(currentAuthUser!.uid).updateData([
+            "meets": FieldValue.arrayUnion([activity.id.uuidString])
+        ])
     }
 }

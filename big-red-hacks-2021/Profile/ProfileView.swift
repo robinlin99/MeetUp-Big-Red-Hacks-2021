@@ -10,10 +10,10 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var viewModel: ViewModel
     var email: String {
-        viewModel.currentUser?.email ?? "none"
+        viewModel.currentUserProfile?.email ?? "none"
     }
-    var id: String {
-        viewModel.currentUser?.uid ?? "none"
+    var name: String {
+        viewModel.currentUserProfile?.name ?? "none"
     }
     
     var body: some View {
@@ -25,11 +25,14 @@ struct ProfileView: View {
                                 .resizable()
                                 .frame(width: geometry.size.width * 0.1, height: geometry.size.width * 0.1)
                             VStack(alignment: .leading) {
+                                Text(name)
+                                    .font(.title)
+                                    .bold()
                                 Text(email)
-                                    .font(.title3)
-                                Text("\(id)")
-                                    .font(.body)
+                                    .font(.subheadline)
+                                    .bold()
                             }
+                            Spacer()
                         }
                         List {
                             NavigationLink("My Profile Information", destination: ProfileInfoView())

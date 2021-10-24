@@ -12,10 +12,10 @@ import MapKit
 struct DiscoverView: View {
     @EnvironmentObject var viewModel: ViewModel
     var email: String {
-        viewModel.currentUser?.email ?? "none"
+        viewModel.currentAuthUser?.email ?? "none"
     }
     var id: String {
-        viewModel.currentUser?.uid ?? "none"
+        viewModel.currentAuthUser?.uid ?? "none"
     }
     var activities: [Activity] {
         viewModel.activities
@@ -32,19 +32,8 @@ struct DiscoverView: View {
                                 ? true
                         : $0.title.lowercased().contains(searchText.lowercased())
                     })) { activity in
-                        NavigationLink(destination: ActivityInfoView(
-                            title: activity.title,
-                            author: activity.author,
-                            date: activity.date,
-                            region: MKCoordinateRegion(
-                                center: CLLocationCoordinate2D(
-                                    latitude: activity.meetupLocation.0,
-                                    longitude: activity.meetupLocation.1),
-                                span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0)),
-                            pin: [CLLocationCoordinate2D(
-                                latitude: activity.meetupLocation.0,
-                                longitude: activity.meetupLocation.1)],
-                            description: activity.description)
+                        NavigationLink(
+                            destination: ActivityInfoView(activity: activity)
                         ) {
                             VStack(alignment: .leading) {
                                 Text(activity.title)
@@ -60,7 +49,10 @@ struct DiscoverView: View {
                     }
                     .navigationBarTitle("Meets")
                 }
-            }.onAppear(perform: { viewModel.loadActivities() })
+            }.onAppear(perform: {
+                viewModel.loadActivities()
+                viewModel.loadUserProfile()
+            })
         }
     }
 }
