@@ -7,4 +7,5 @@
   <img width="500" height="500" src="meetup_500x500.png">
 </p>
 
-An iOS app that enables you to safely and conveniently plan local meetups during the COVID-19 pandemic.
+# ✍️ About 
+`MeetUp` is an `iOS` app written using the latest verion of `Swift` programming language and `SwiftUI`. The app enables you to safely and conveniently plan local meetups during the COVID-19 pandemic.  
