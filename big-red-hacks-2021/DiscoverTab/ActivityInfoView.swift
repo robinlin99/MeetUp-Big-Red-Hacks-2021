@@ -8,6 +8,16 @@
 import SwiftUI
 import Foundation
 
+struct EventSafetyTagView: View {
+    var category: String
+    var backgroundColor: Color
+    var foregroundColor: Color
+    
+    var body: some View {
+        Text("dummy")
+    }
+}
+
 
 struct MetaInfoView: View {
     var text: String
@@ -76,17 +86,14 @@ struct ActivityInfoView: View {
                 ScrollView {
                     VStack {
                         // MARK: Title.
-                        Group {
-                            HStack {
-                                Text("\(title) hosted by \(author)")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                Spacer()
-                            }.padding(.horizontal)
-                            Divider()
-                        }
+                        HStack {
+                            Text("\(title) hosted by \(author)")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .padding(.horizontal)
+                            Spacer()
+                        }.padding(.horizontal)
                         
                         // MARK: Basic Information.
                         Group {
@@ -98,7 +105,7 @@ struct ActivityInfoView: View {
                                 MetaInfoView(text: date, icon: "calendar.circle", width: geometry.size.width * 0.05, height: geometry.size.width * 0.05)
                                     .padding(.horizontal)
                             }.padding(.horizontal)
-                            Divider()
+                            Divider().padding()
                         }
                         
                         // MARK: Description.
@@ -114,7 +121,7 @@ struct ActivityInfoView: View {
                                     .font(.body)
                                     .padding()
                             }.padding()
-                            Divider()
+                            Divider().padding()
                         }
                         
                         // MARK: Getting there.
@@ -130,7 +137,7 @@ struct ActivityInfoView: View {
                                     .font(.body)
                                     .padding()
                             }.padding()
-                            Divider()
+                            Divider().padding()
                         }
                         
                         // MARK: Book Button

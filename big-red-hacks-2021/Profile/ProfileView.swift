@@ -35,7 +35,6 @@ struct ProfileView: View {
                             Spacer()
                         }
                         List {
-                            NavigationLink("My Profile Information", destination: ProfileInfoView())
                             NavigationLink("Meets", destination: MeetsInfoView())
                             NavigationLink("My Posts", destination: PostsView())
                             NavigationLink("Help & Support", destination: LegalView())

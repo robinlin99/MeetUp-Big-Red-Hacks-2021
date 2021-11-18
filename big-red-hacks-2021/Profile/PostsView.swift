@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct PostsView: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         ScrollView {
             Text("My Posts")
+                .font(.title)
+                .fontWeight(.bold)
         }
     }
 }

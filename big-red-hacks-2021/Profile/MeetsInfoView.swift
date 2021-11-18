@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct MeetsInfoView: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         ScrollView {
             Text("My Meets")
+                .font(.title)
+                .fontWeight(.bold)
         }
     }
 }

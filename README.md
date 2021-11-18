@@ -4,16 +4,16 @@
 
 
 <p align="center">
-  <img width="500" height="500" src="meetup_500x500.png">
+  <img width="500" height="500" src="./Images/meetup_500x500.png">
 </p>
 
 # ✍️ About 
 🎊 `MeetUp` is an `iOS` app written using the latest verion of `Swift` programming language and `SwiftUI`. The app enables you to safely and conveniently plan local meetups during the COVID-19 pandemic.  
 
 <p align="center">
-  <img width="250" height="408" src="log-in.png">
-</p>
-
-<p align="center">
-  <img width="270" height="408" src="plan.png">
+  <img width="200" height="400" src="./Images/login.png">
+  <img width="200" height="400" src="./Images/main.png">
+  <img width="200" height="400" src="./Images/post.png">
+  <img width="200" height="400" src="./Images/detail.png">
+  <img width="200" height="400" src="./Images/profile.png">
 </p>

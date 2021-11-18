@@ -11,6 +11,7 @@ import MapKit
 
 struct DiscoverView: View {
     @EnvironmentObject var viewModel: ViewModel
+
     var email: String {
         viewModel.currentAuthUser?.email ?? "none"
     }

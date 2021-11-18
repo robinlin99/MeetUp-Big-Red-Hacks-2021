@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct LegalView: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         ScrollView {
             Text("Terms and Conditions")
+                .font(.title)
+                .fontWeight(.bold)
         }
     }
 }
