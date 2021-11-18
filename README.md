@@ -15,5 +15,5 @@
 </p>
 
 <p align="center">
-  <img width="250" height="408" src="plan.png">
+  <img width="270" height="408" src="plan.png">
 </p>
