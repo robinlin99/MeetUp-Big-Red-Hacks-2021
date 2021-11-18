@@ -9,3 +9,11 @@
 
 # ✍️ About 
 🎊 `MeetUp` is an `iOS` app written using the latest verion of `Swift` programming language and `SwiftUI`. The app enables you to safely and conveniently plan local meetups during the COVID-19 pandemic.  
+
+<p align="center">
+  <img src="log-lin.png">
+</p>
+
+<p align="center">
+  <img src="plan.png">
+</p>
