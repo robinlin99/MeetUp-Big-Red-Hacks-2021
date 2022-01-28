@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img width="325" height="650" src="./Images/post.png">
-  <img width="325" height="650" src="./Images/detail.png">
-  <img width="325" height="650" src="./Images/profile.png">
+  <img width="300" height="600" src="./Images/post.png">
+  <img width="300" height="600" src="./Images/detail.png">
+  <img width="300" height="600" src="./Images/profile.png">
 </p>
