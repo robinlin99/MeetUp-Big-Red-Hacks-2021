@@ -13,6 +13,9 @@
 <p align="center">
   <img width="200" height="400" src="./Images/login.png">
   <img width="200" height="400" src="./Images/main.png">
+</p>
+
+<p align="center">
   <img width="200" height="400" src="./Images/post.png">
   <img width="200" height="400" src="./Images/detail.png">
   <img width="200" height="400" src="./Images/profile.png">
