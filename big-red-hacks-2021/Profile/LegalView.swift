@@ -9,18 +9,23 @@ import SwiftUI
 
 struct LegalView: View {
     @EnvironmentObject var viewModel: ViewModel
+    var termsAndConditions: String {
+        viewModel.supportInfo
+    }
     
     var body: some View {
         ScrollView {
-            Text("Terms and Conditions")
-                .font(.title)
-                .fontWeight(.bold)
+            VStack {
+                Text("Terms and Conditions")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text(termsAndConditions)
+                    .font(.body)
+                    .padding()
+            }
         }
-    }
-}
-
-struct LegalView_Previews: PreviewProvider {
-    static var previews: some View {
-        LegalView()
+        .refreshable {
+            viewModel.loadSupportInfo()
+        }
     }
 }

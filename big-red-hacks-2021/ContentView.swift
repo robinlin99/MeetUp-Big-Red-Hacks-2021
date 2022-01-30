@@ -21,6 +21,10 @@ struct ContentView: View {
                         Image(systemName: "magnifyingglass")
                         Text("Discover")
                     }.tag(Tab.discover)
+                    .onAppear(perform: {
+                        viewModel.loadActivities()
+                        viewModel.loadUserProfile()
+                    })
                 PostView()
                     .tabItem {
                         Image(systemName: "plus.circle")
@@ -31,6 +35,11 @@ struct ContentView: View {
                         Image(systemName: "person.fill")
                         Text("My Profile")
                     }.tag(Tab.profile)
+                    .onAppear(perform: {
+                        viewModel.loadSupportInfo()
+                        viewModel.loadRegisteredActivities()
+                        viewModel.loadPostedActivities()
+                    })
             }
             .font(.headline)
         }

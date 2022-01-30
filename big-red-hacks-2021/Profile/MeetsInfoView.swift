@@ -9,12 +9,22 @@ import SwiftUI
 
 struct MeetsInfoView: View {
     @EnvironmentObject var viewModel: ViewModel
+    var activities: [Activity] {
+        viewModel.activities
+    }
+    var registeredActivities: [Activity] {
+        viewModel.registeredActivities
+    }
     
     var body: some View {
-        ScrollView {
-            Text("My Meets")
-                .font(.title)
-                .fontWeight(.bold)
+        NavigationView {
+            List(registeredActivities) { activity in
+                EventRowView(activity: activity)
+            }
+            .refreshable {
+                viewModel.loadRegisteredActivities()
+            }
+            .navigationTitle("My Meets")
         }
     }
 }

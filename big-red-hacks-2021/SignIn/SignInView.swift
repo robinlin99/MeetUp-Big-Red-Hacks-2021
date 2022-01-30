@@ -26,7 +26,7 @@ struct SignInView: View {
                         Image("meetup_500x500")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 100, height: 100)
+                            .frame(width: 125, height: 125)
                             .cornerRadius(12)
                         Spacer()
                             .frame(height: 50)

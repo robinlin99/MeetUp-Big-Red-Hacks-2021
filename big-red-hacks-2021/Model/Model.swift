@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 struct Activity: Identifiable {
-    public let id = UUID()
+    public let id: UUID 
     public var title: String
     public var author: String
     public var date: String

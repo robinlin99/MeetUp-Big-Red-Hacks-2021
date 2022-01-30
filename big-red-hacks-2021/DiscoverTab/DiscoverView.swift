@@ -28,11 +28,9 @@ struct DiscoverView: View {
             NavigationView {
                 VStack {
                     SearchBarView(text: $searchText)
-                    List(activities.filter({
-                            searchText.isEmpty
-                                ? true
-                        : $0.title.lowercased().contains(searchText.lowercased())
-                    })) { activity in
+                    List(activities.filter(
+                        { searchText.isEmpty ? true : $0.title.lowercased().contains(searchText.lowercased()) }
+                    )) { activity in
                         NavigationLink(
                             destination: ActivityInfoView(activity: activity)
                         ) {
@@ -50,10 +48,7 @@ struct DiscoverView: View {
                     }
                     .navigationBarTitle("Meets")
                 }
-            }.onAppear(perform: {
-                viewModel.loadActivities()
-                viewModel.loadUserProfile()
-            })
+            }
         }
     }
 }

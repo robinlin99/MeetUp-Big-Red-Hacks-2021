@@ -110,19 +110,22 @@ struct PostView: View {
                                 }
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "MMMM dd, yyyy '@' h:mm a"
-                            let activity = Activity(
-                                title: title,
-                                author: name,
-                                date: dateFormatter.string(from: date),
-                                address: address,
-                                description: description,
-                                posterEmail: email,
-                                posterPhoneNumber: phoneNumber,
-                                isVaccineRequired: isVaccineRequired,
-                                isTestingRequired: isTestingRequired,
-                                isMaskRequired: isMaskRequired,
-                                people: Int(people) ?? 0)
-                            viewModel.postActivity(activity: activity)
+                            viewModel.postActivity(activity:
+                                Activity(
+                                    id: UUID(),
+                                    title: title,
+                                    author: name,
+                                    date: dateFormatter.string(from: date),
+                                    address: address,
+                                    description: description,
+                                    posterEmail: email,
+                                    posterPhoneNumber: phoneNumber,
+                                    isVaccineRequired: isVaccineRequired,
+                                    isTestingRequired: isTestingRequired,
+                                    isMaskRequired: isMaskRequired,
+                                    people: Int(people) ?? 0
+                                )
+                            )
                             clearData()
                             appStateModel.switchState(to: .discover)
                         }, label: {

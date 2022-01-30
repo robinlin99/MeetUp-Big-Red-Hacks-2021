@@ -9,12 +9,22 @@ import SwiftUI
 
 struct PostsView: View {
     @EnvironmentObject var viewModel: ViewModel
+    var activities: [Activity] {
+        viewModel.activities
+    }
+    var postedActivities: [Activity] {
+        viewModel.postedActivities
+    }
     
     var body: some View {
-        ScrollView {
-            Text("My Posts")
-                .font(.title)
-                .fontWeight(.bold)
+        NavigationView {
+            List(postedActivities) { activity in
+                EventRowView(activity: activity)
+            }
+            .refreshable {
+                viewModel.loadPostedActivities()
+            }
+            .navigationTitle("My Posts")
         }
     }
 }

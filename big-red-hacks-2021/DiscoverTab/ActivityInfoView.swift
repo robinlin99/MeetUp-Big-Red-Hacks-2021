@@ -8,16 +8,6 @@
 import SwiftUI
 import Foundation
 
-struct EventSafetyTagView: View {
-    var category: String
-    var backgroundColor: Color
-    var foregroundColor: Color
-    
-    var body: some View {
-        Text("dummy")
-    }
-}
-
 
 struct MetaInfoView: View {
     var text: String
@@ -144,7 +134,6 @@ struct ActivityInfoView: View {
                         VStack {
                             Button(action: {
                                 viewModel.bookActivity(activity: activity)
-                                appStateModel.switchState(to: .discover)
                             }, label: {
                                 Text("Register")
                                     .font(.headline)
