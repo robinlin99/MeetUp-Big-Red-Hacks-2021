@@ -100,11 +100,21 @@ struct ActivityInfoView: View {
                         Group {
                             VStack {
                                 // Contact Info.
-                                MetaInfoView(text: "\(posterPhone) • \(posterEmail)", icon: "person.circle", width: geometry.size.width * 0.05, height: geometry.size.width * 0.05)
-                                    .padding(.horizontal)
+                                MetaInfoView(
+                                    text: "\(posterPhone) • \(posterEmail)",
+                                    icon: "person.circle",
+                                    width: geometry.size.width * 0.05,
+                                    height: geometry.size.width * 0.05
+                                )
+                                .padding(.horizontal)
                                 // Meet Time.
-                                MetaInfoView(text: date, icon: "calendar.circle", width: geometry.size.width * 0.05, height: geometry.size.width * 0.05)
-                                    .padding(.horizontal)
+                                MetaInfoView(
+                                    text: date,
+                                    icon: "calendar.circle",
+                                    width: geometry.size.width * 0.05,
+                                    height: geometry.size.width * 0.05
+                                )
+                                .padding(.horizontal)
                             }.padding(.horizontal)
                             Divider().padding()
                         }
