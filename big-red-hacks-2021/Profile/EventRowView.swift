@@ -9,17 +9,17 @@ import SwiftUI
 
 struct EventRowView: View {
     var activity: Activity
-    
+
     private var authorInitials: String {
         let formatter = PersonNameComponentsFormatter()
         guard let components = formatter.personNameComponents(from: activity.author) else {
             fatalError("Unable to parse poster name.")
         }
-                
+
         formatter.style = .abbreviated
         return formatter.string(from: components)
     }
-    
+
     var body: some View {
         HStack {
             Text(authorInitials)
@@ -27,7 +27,7 @@ struct EventRowView: View {
                 .background(
                     Circle()
                         .stroke(.blue, lineWidth: 4)
-                      .padding(6)
+                        .padding(6)
                 )
             VStack(alignment: .leading) {
                 Text(activity.title)
@@ -57,7 +57,8 @@ struct EventRowView_Previews: PreviewProvider {
             isVaccineRequired: true,
             isTestingRequired: true,
             isMaskRequired: true,
-            people: 10)
+            people: 10
+        )
         )
     }
 }

@@ -5,11 +5,11 @@
 //  Created by Robin Lin on 9/25/21.
 //
 
-import Foundation
-import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
+import SwiftUI
 
 enum Tab {
     case discover
@@ -19,7 +19,7 @@ enum Tab {
 
 class AppStateModel: ObservableObject {
     @Published var currentTab: Tab = .discover
-    
+
     func switchState(to tab: Tab) {
         currentTab = tab
     }
@@ -27,61 +27,71 @@ class AppStateModel: ObservableObject {
 
 class ViewModel: ObservableObject {
     // MARK: Authentication.
+
     let auth = Auth.auth()
-    
+
     // MARK: Firestore References.
+
     let db = Firestore.firestore()
     var usersRef: CollectionReference {
         db.collection("users")
     }
+
     var postsRef: CollectionReference {
         db.collection("posts")
     }
+
     var supportRef: CollectionReference {
         db.collection("support")
     }
-    
+
     // MARK: Profile.
+
     var currentAuthUser: User? {
         auth.currentUser
     }
-    var currentUserProfile: Profile? = nil
+
+    var currentUserProfile: Profile?
     @Published var isSignedIn: Bool = false
-    
+
     // MARK: All Activities (including non-registered activities).
+
     // Empty initialization.
-    @Published var activities: [Activity] = [Activity]()
+    @Published var activities: [Activity] = .init()
     var activitiesCount: Int {
         activities.count
     }
-    
+
     // MARK: Activities posted by the user.
-    @Published var postedActivityIDs: [String] = [String]()
+
+    @Published var postedActivityIDs: [String] = .init()
     var postedActivities: [Activity] {
-        activities.filter( { postedActivityIDs.contains($0.id.uuidString) } )
+        activities.filter { postedActivityIDs.contains($0.id.uuidString) }
     }
-    
+
     // MARK: Registered Activities (including registered activities and posted activities by user).
+
     // Empty initialization.
-    @Published var registeredActivityIDs: [String] = [String]()
+    @Published var registeredActivityIDs: [String] = .init()
     var registeredActivities: [Activity] {
-        activities.filter( { registeredActivityIDs.contains($0.id.uuidString) } )
+        activities.filter { registeredActivityIDs.contains($0.id.uuidString) }
     }
-    
+
     // MARK: Support Info.
+
     var supportInfo: String = ""
 
     func signIn(email: String, password: String) {
         auth.signIn(withEmail: email, password: password) { result, error in
-            if result != nil && error == nil {
+            if result != nil, error == nil {
                 self.isSignedIn = true
             }
         }
     }
-    
+
     func signUp(name: String, email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
-            if result != nil && error == nil {
+            if result != nil, error == nil {
                 self.isSignedIn = true
                 // Add user login into Firestore db.
                 self.db.collection("users").document(self.currentAuthUser!.uid).setData([
@@ -89,7 +99,7 @@ class ViewModel: ObservableObject {
                     "email": email,
                     "password": password,
                     "posts": [],
-                    "meets": []
+                    "meets": [],
                 ]) { err in
                     if let err = err {
                         print("Error writing document: \(err)")
@@ -97,22 +107,22 @@ class ViewModel: ObservableObject {
                 }
             }
         }
-        
-        //Set the current user profile.
+
+        // Set the current user profile.
         currentUserProfile = Profile(name: name, email: email)
     }
-    
+
     func signOut() {
         do {
             try auth.signOut()
-            self.isSignedIn = false
+            isSignedIn = false
         } catch {
             print("Error occured while signing out!")
         }
     }
-    
+
     func loadActivities() {
-        postsRef.getDocuments() { (querySnapshot, err) in
+        postsRef.getDocuments { querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -138,26 +148,26 @@ class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     func loadRegisteredActivities() {
         if currentAuthUser != nil {
-            usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+            usersRef.document(currentAuthUser!.uid).getDocument { document, _ in
                 guard let document = document, document.exists else {
                     fatalError("Document does not exist")
                 }
-            
+
                 self.registeredActivityIDs = document.data()!["meets"] as! [String]
             }
         }
     }
-    
+
     func loadPostedActivities() {
         if currentAuthUser != nil {
-            usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+            usersRef.document(currentAuthUser!.uid).getDocument { document, _ in
                 guard let document = document, document.exists else {
                     fatalError("Document does not exist")
                 }
-            
+
                 self.postedActivityIDs = document.data()!["posts"] as! [String]
             }
         }
@@ -166,7 +176,7 @@ class ViewModel: ObservableObject {
     func loadUserProfile() {
         // Extract the name from db.
         if currentAuthUser != nil {
-            usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+            usersRef.document(currentAuthUser!.uid).getDocument { document, _ in
                 if let document = document, document.exists {
                     let name = document.data()!["name"] as! String
                     let email = document.data()!["email"] as! String
@@ -177,19 +187,19 @@ class ViewModel: ObservableObject {
             }
         }
     }
-    
+
     func loadSupportInfo() {
         if currentAuthUser != nil {
-            supportRef.document("help-and-support").getDocument { (document, error) in
+            supportRef.document("help-and-support").getDocument { document, _ in
                 guard let document = document, document.exists else {
                     fatalError("Document does not exist")
                 }
-            
+
                 self.supportInfo = document.data()!["content"] as! String
             }
         }
     }
-    
+
     func postActivity(activity: Activity) {
         // Add to posts.
         db.collection("posts").document("\(activity.id.uuidString)").setData([
@@ -204,7 +214,7 @@ class ViewModel: ObservableObject {
             "isVaccineRequired": activity.isVaccineRequired,
             "isTestingRequired": activity.isTestingRequired,
             "isMaskRequired": activity.isMaskRequired,
-            "people": activity.people
+            "people": activity.people,
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -212,21 +222,21 @@ class ViewModel: ObservableObject {
                 print("Document successfully written!")
             }
         }
-        
+
         // Add to user posts.
         db.collection("users").document(currentAuthUser!.uid).updateData([
             "posts": FieldValue.arrayUnion([activity.id.uuidString]),
-            "meets": FieldValue.arrayUnion([activity.id.uuidString])
+            "meets": FieldValue.arrayUnion([activity.id.uuidString]),
         ])
     }
-    
+
     func bookActivity(activity: Activity) {
         // Check if activity can be added.
-        usersRef.document(currentAuthUser!.uid).getDocument { (document, error) in
+        usersRef.document(currentAuthUser!.uid).getDocument { document, _ in
             if let document = document, document.exists {
                 let meets = document.data()!["meets"] as! [String]
                 let posts = document.data()!["posts"] as! [String]
-                guard !meets.contains(activity.id.uuidString) && !posts.contains(activity.id.uuidString) else {
+                guard !meets.contains(activity.id.uuidString), !posts.contains(activity.id.uuidString) else {
                     return
                 }
             } else {
@@ -235,7 +245,7 @@ class ViewModel: ObservableObject {
         }
         // Add to current user activity.
         db.collection("users").document(currentAuthUser!.uid).updateData([
-            "meets": FieldValue.arrayUnion([activity.id.uuidString])
+            "meets": FieldValue.arrayUnion([activity.id.uuidString]),
         ])
     }
 }

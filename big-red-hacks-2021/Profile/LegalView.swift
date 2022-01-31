@@ -12,7 +12,7 @@ struct LegalView: View {
     var termsAndConditions: String {
         viewModel.supportInfo
     }
-    
+
     var body: some View {
         ScrollView {
             VStack {

@@ -15,8 +15,9 @@ struct SignUpView: View {
     let gradient = LinearGradient(
         gradient: Gradient(colors: [Color.red, Color.blue]),
         startPoint: .topLeading,
-        endPoint: .bottomTrailing)
-    
+        endPoint: .bottomTrailing
+    )
+
     var body: some View {
         NavigationView {
             VStack {
@@ -40,7 +41,7 @@ struct SignUpView: View {
                         .cornerRadius(10)
                     Spacer().frame(height: 20)
                     Button(action: {
-                        guard !email.isEmpty && !password.isEmpty && !name.isEmpty else {
+                        guard !email.isEmpty, !password.isEmpty, !name.isEmpty else {
                             print("Invalid Info!")
                             return
                         }
@@ -57,11 +58,5 @@ struct SignUpView: View {
                 .padding()
             }.navigationBarTitle("Sign Up")
         }
-    }
-}
-
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView().preferredColorScheme(.dark)
     }
 }

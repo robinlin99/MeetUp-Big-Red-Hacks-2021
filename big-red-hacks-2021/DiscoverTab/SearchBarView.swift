@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var text: String
- 
+
     @State private var isEditing = false
- 
+
     var body: some View {
         HStack {
             TextField("Search...", text: $text)
@@ -27,7 +27,7 @@ struct SearchBarView: View {
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
-                 
+
                         if isEditing {
                             Button(action: {
                                 self.text = ""
@@ -49,7 +49,8 @@ struct SearchBarView: View {
                     self.text = ""
                     UIApplication.shared.sendAction(
                         #selector(UIResponder.resignFirstResponder),
-                        to: nil, from: nil, for: nil)
+                        to: nil, from: nil, for: nil
+                    )
                 }) {
                     Text("Cancel")
                 }

@@ -14,10 +14,11 @@ struct SignInView: View {
     let gradient = LinearGradient(
         gradient: Gradient(colors: [Color.red, Color.blue]),
         startPoint: .topLeading,
-        endPoint: .bottomTrailing)
+        endPoint: .bottomTrailing
+    )
 
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             NavigationView {
                 VStack {
                     VStack {
@@ -44,7 +45,7 @@ struct SignInView: View {
                             .cornerRadius(10)
                         Spacer().frame(height: 20)
                         Button(action: {
-                            guard !email.isEmpty && !password.isEmpty else {
+                            guard !email.isEmpty, !password.isEmpty else {
                                 print("Invalid Info!")
                                 return
                             }
@@ -75,11 +76,5 @@ struct SignInView: View {
                 .navigationTitle("Log In")
             }
         }
-    }
-}
-
-struct SignInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView().preferredColorScheme(.dark)
     }
 }

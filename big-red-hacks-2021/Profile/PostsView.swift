@@ -12,10 +12,11 @@ struct PostsView: View {
     var activities: [Activity] {
         viewModel.activities
     }
+
     var postedActivities: [Activity] {
         viewModel.postedActivities
     }
-    
+
     var body: some View {
         NavigationView {
             List(postedActivities) { activity in
@@ -26,11 +27,5 @@ struct PostsView: View {
             }
             .navigationTitle("My Posts")
         }
-    }
-}
-
-struct PostsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostsView()
     }
 }

@@ -5,11 +5,11 @@
 //  Created by Robin Lin on 9/25/21.
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 
 struct Activity: Identifiable {
-    public let id: UUID 
+    public let id: UUID
     public var title: String
     public var author: String
     public var date: String

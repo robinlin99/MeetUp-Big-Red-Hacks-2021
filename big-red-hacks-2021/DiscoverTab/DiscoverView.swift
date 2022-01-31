@@ -5,9 +5,9 @@
 //  Created by Robin Lin on 2021-09-25.
 //
 
-import SwiftUI
 import Foundation
 import MapKit
+import SwiftUI
 
 struct DiscoverView: View {
     @EnvironmentObject var viewModel: ViewModel
@@ -15,21 +15,26 @@ struct DiscoverView: View {
     var email: String {
         viewModel.currentAuthUser?.email ?? "none"
     }
+
     var id: String {
         viewModel.currentAuthUser?.uid ?? "none"
     }
+
     var activities: [Activity] {
         viewModel.activities
     }
+
     @State var searchText: String = ""
-    
+
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             NavigationView {
                 VStack {
                     SearchBarView(text: $searchText)
-                    List(activities.filter(
-                        { searchText.isEmpty ? true : $0.title.lowercased().contains(searchText.lowercased()) }
+                    List(activities.filter({
+                        searchText.isEmpty ? true :
+                            $0.title.lowercased().contains(searchText.lowercased())
+                    }
                     )) { activity in
                         NavigationLink(
                             destination: ActivityInfoView(activity: activity)

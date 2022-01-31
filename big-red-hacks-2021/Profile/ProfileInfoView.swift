@@ -9,16 +9,10 @@ import SwiftUI
 
 struct ProfileInfoView: View {
     @EnvironmentObject var viewModel: ViewModel
-    
+
     var body: some View {
         ScrollView {
             Text("My Profile Info")
         }
-    }
-}
-
-struct ProfileInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileInfoView()
     }
 }

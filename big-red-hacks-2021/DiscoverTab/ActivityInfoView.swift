@@ -5,16 +5,15 @@
 //  Created by Robin Lin on 9/26/21.
 //
 
-import SwiftUI
 import Foundation
-
+import SwiftUI
 
 struct MetaInfoView: View {
     var text: String
     var icon: String
     var width: CGFloat
     var height: CGFloat
-    
+
     var body: some View {
         HStack {
             Image(systemName: icon)
@@ -34,38 +33,48 @@ struct MetaInfoView: View {
 struct ActivityInfoView: View {
     @EnvironmentObject var viewModel: ViewModel
     @EnvironmentObject var appStateModel: AppStateModel
-    
+
     var activity: Activity
     var title: String {
         activity.title
     }
+
     var author: String {
         activity.author
     }
+
     var date: String {
         activity.date
     }
+
     var meetupAddress: String {
         activity.address
     }
+
     var description: String {
         activity.description
     }
+
     var posterEmail: String {
         activity.posterEmail
     }
+
     var posterPhone: String {
         activity.posterPhoneNumber
     }
+
     var isVaccineRequired: Bool {
         activity.isVaccineRequired
     }
+
     var isTestingRequired: Bool {
         activity.isTestingRequired
     }
+
     var isMaskRequired: Bool {
         activity.isMaskRequired
     }
+
     var people: Int {
         activity.people
     }
@@ -76,6 +85,7 @@ struct ActivityInfoView: View {
                 ScrollView {
                     VStack {
                         // MARK: Title.
+
                         HStack {
                             Text("\(title) hosted by \(author)")
                                 .font(.largeTitle)
@@ -84,8 +94,9 @@ struct ActivityInfoView: View {
                                 .padding(.horizontal)
                             Spacer()
                         }.padding(.horizontal)
-                        
+
                         // MARK: Basic Information.
+
                         Group {
                             VStack {
                                 // Contact Info.
@@ -97,8 +108,9 @@ struct ActivityInfoView: View {
                             }.padding(.horizontal)
                             Divider().padding()
                         }
-                        
+
                         // MARK: Description.
+
                         Group {
                             VStack {
                                 HStack {
@@ -113,8 +125,9 @@ struct ActivityInfoView: View {
                             }.padding()
                             Divider().padding()
                         }
-                        
+
                         // MARK: Getting there.
+
                         Group {
                             VStack {
                                 HStack {
@@ -129,8 +142,9 @@ struct ActivityInfoView: View {
                             }.padding()
                             Divider().padding()
                         }
-                        
+
                         // MARK: Book Button
+
                         VStack {
                             Button(action: {
                                 viewModel.bookActivity(activity: activity)
