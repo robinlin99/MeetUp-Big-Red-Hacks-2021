@@ -18,63 +18,62 @@ struct SignInView: View {
     )
 
     var body: some View {
-        GeometryReader { _ in
-            NavigationView {
+        NavigationView {
+            VStack {
                 VStack {
-                    VStack {
-                        Spacer()
-                            .frame(height: 50)
-                        Image("meetup_500x500")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 125, height: 125)
-                            .cornerRadius(12)
-                        Spacer()
-                            .frame(height: 50)
-                        TextField("Email Address", text: $email)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(10)
-                        SecureField("Password", text: $password)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(10)
-                        Spacer().frame(height: 20)
-                        Button(action: {
-                            guard !email.isEmpty, !password.isEmpty else {
-                                print("Invalid Info!")
-                                return
-                            }
-                            viewModel.signIn(email: email, password: password)
-                        }, label: {
-                            Text("Log In")
-                                .bold()
-                                .padding()
-                        })
-                        .frame(width: 200, height: 50)
-                        .background(Capsule().stroke(gradient, lineWidth: 2).saturation(1.8))
-                        Spacer()
-                        Group {
-                            HStack {
-                                VStack {
-                                    Divider()
-                                }.padding()
-                                Text("OR")
-                                VStack {
-                                    Divider()
-                                }.padding()
-                            }
+                    Spacer()
+                        .frame(height: 50)
+                    Image("meetup_500x500")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 125, height: 125)
+                        .cornerRadius(12)
+                    Spacer()
+                        .frame(height: 50)
+                    TextField("Email Address", text: $email)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10)
+                    SecureField("Password", text: $password)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10)
+                    Spacer().frame(height: 20)
+                    Button(action: {
+                        guard !email.isEmpty, !password.isEmpty else {
+                            print("Invalid Info!")
+                            return
                         }
-                        NavigationLink("Create an Account", destination: SignUpView())
+                        viewModel.signIn(email: email, password: password)
+                    }, label: {
+                        Text("Log In")
+                            .bold()
+                            .padding()
+                    })
+                    .frame(width: 200, height: 50)
+                    .background(Capsule().stroke(gradient, lineWidth: 2).saturation(1.8))
+                    Spacer()
+                    Group {
+                        HStack {
+                            VStack {
+                                Divider()
+                            }.padding()
+                            Text("OR")
+                            VStack {
+                                Divider()
+                            }.padding()
+                        }
                     }
-                    .padding()
+                    NavigationLink("Create an Account", destination: SignUpView())
                 }
-                .navigationTitle("Log In")
+                .padding()
             }
+            .navigationTitle("Log In")
         }
     }
+
 }

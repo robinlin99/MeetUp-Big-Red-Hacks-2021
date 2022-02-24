@@ -12,6 +12,7 @@
 		7C10C16126FFEB7000EB4CEE /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16026FFEB7000EB4CEE /* SignInView.swift */; };
 		7C10C16326FFF02700EB4CEE /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16226FFF02700EB4CEE /* ViewModel.swift */; };
 		7C10C16926FFFF6900EB4CEE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10C16826FFFF6900EB4CEE /* SignUpView.swift */; };
+		7C640F0427A43C4D004DA959 /* EventRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C640F0327A43C4D004DA959 /* EventRowView.swift */; };
 		7C86ADA5270107E900410241 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA4270107E900410241 /* ProfileView.swift */; };
 		7C86ADA72701093700410241 /* ActivityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA62701093700410241 /* ActivityInfoView.swift */; };
 		7C86ADA92701281000410241 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86ADA82701281000410241 /* ProfileInfoView.swift */; };
@@ -32,11 +33,12 @@
 		0CF8472AA488C7C6C3CF57EB /* Pods-big-red-hacks-2021.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-big-red-hacks-2021.debug.xcconfig"; path = "Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021.debug.xcconfig"; sourceTree = "<group>"; };
 		3A0AB6F6708B1927AAA6BD04 /* Pods-big-red-hacks-2021.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-big-red-hacks-2021.release.xcconfig"; path = "Target Support Files/Pods-big-red-hacks-2021/Pods-big-red-hacks-2021.release.xcconfig"; sourceTree = "<group>"; };
 		451591062C62FEBCD0962308 /* Pods_big_red_hacks_2021.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_big_red_hacks_2021.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C10C15C26FFE14900EB4CEE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C10C15C26FFE14900EB4CEE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/robinlin/Downloads/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		7C10C15E26FFE72E00EB4CEE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7C10C16026FFEB7000EB4CEE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7C10C16226FFF02700EB4CEE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C10C16826FFFF6900EB4CEE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7C640F0327A43C4D004DA959 /* EventRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRowView.swift; sourceTree = "<group>"; };
 		7C86ADA4270107E900410241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7C86ADA62701093700410241 /* ActivityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityInfoView.swift; sourceTree = "<group>"; };
 		7C86ADA82701281000410241 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				7C86ADAA27012C6A00410241 /* MeetsInfoView.swift */,
 				7C86ADAC27012C7B00410241 /* PostsView.swift */,
 				7C86ADAE27012C9200410241 /* LegalView.swift */,
+				7C640F0327A43C4D004DA959 /* EventRowView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			files = (
 				7C86ADAD27012C7B00410241 /* PostsView.swift in Sources */,
 				7C86ADA92701281000410241 /* ProfileInfoView.swift in Sources */,
+				7C640F0427A43C4D004DA959 /* EventRowView.swift in Sources */,
 				7C97D6EC26FEB3EA002B33FA /* ContentView.swift in Sources */,
 				7C10C16126FFEB7000EB4CEE /* SignInView.swift in Sources */,
 				7C86ADA5270107E900410241 /* ProfileView.swift in Sources */,
@@ -461,7 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cornell.zl755.big-red-hacks-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -484,7 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cornell.zl755.big-red-hacks-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

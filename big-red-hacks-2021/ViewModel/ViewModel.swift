@@ -55,7 +55,6 @@ class ViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
 
     // MARK: All Activities (including non-registered activities).
-
     // Empty initialization.
     @Published var activities: [Activity] = .init()
     var activitiesCount: Int {
@@ -63,7 +62,6 @@ class ViewModel: ObservableObject {
     }
 
     // MARK: Activities posted by the user.
-
     @Published var postedActivityIDs: [String] = .init()
     var postedActivities: [Activity] {
         activities.filter { postedActivityIDs.contains($0.id.uuidString) }
@@ -78,7 +76,6 @@ class ViewModel: ObservableObject {
     }
 
     // MARK: Support Info.
-
     var supportInfo: String = ""
 
     func signIn(email: String, password: String) {
